@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import ""
+#import <RandomUser/UserDataManager.h>
 
 @interface RandomUserTests : XCTestCase
 
@@ -24,9 +24,9 @@
 -(void)test_001_getuserList {
     __block XCTestExpectation * onCompleteExpectation = [self expectationWithDescription:@"onComplete"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        UserDataManager *userManager = [[UserDataManager alloc]init];
-        
-        [userManager getUserListWithSeed:@"002" gender:@"female" resultCount:10 withCompletionBlock:^(NSArray *users, NSError *error) {
+
+        NSLog(@"Current user’s home directory is %@", NSHomeDirectory());
+        [[UserDataManager sharedInstance] getUserListWithSeed:@"002" gender:@"female" resultCount:1000 withCompletionBlock:^(NSArray *users, NSError *error) {
             XCTAssert(true);
             [onCompleteExpectation fulfill];
         }];
@@ -34,6 +34,21 @@
     
     [self waitForExpectations:[NSArray arrayWithObjects:onCompleteExpectation, nil] timeout:100];
 }
+
+-(void)test_002_savedUser {
+    __block XCTestExpectation * onCompleteExpectation = [self expectationWithDescription:@"onComplete"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        NSLog(@"Current user’s home directory is %@", NSHomeDirectory());
+        [[UserDataManager sharedInstance]getStoredUserFromCacheWithCompletionBlock:^(NSArray<UserDetail *> *list) {
+            NSLog(@"%@",list);
+            [onCompleteExpectation fulfill];
+        }];
+    });
+    
+    [self waitForExpectations:[NSArray arrayWithObjects:onCompleteExpectation, nil] timeout:100];
+}
+
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];

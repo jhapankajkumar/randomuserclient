@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UserDetails : NSObject
+@interface UserDetail : NSObject
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *seed;

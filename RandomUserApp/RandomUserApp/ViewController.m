@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <RandomUser/RandomUser.h>
 
 @interface ViewController ()
 
@@ -17,8 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [self getListOfuser];
 }
 
+-(void)getListOfuser {
+    [[UserDataManager sharedInstance]getUserListWithSeed:@"002" gender:@"male" resultCount:10 withCompletionBlock:^(NSArray<UserDetails *> *users, NSError *error) {
+        NSLog(@"%@",users);
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

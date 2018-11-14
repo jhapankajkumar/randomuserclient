@@ -6,8 +6,8 @@
 //  Copyright © 2018 Pankaj. All rights reserved.
 //
 
-#import "UserDetails.h"
+#import "UserDetail.h"
 
-@implementation UserDetails
+@implementation UserDetail
 
 @end

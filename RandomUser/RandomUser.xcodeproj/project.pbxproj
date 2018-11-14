@@ -7,18 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EB0518B1219C107F00F6B398 /* UserDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = EB0518AF219C107F00F6B398 /* UserDetails.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EB0518B2219C107F00F6B398 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0518B0219C107F00F6B398 /* UserDetails.m */; };
-		EB0518B5219C190400F6B398 /* Encryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EB0518B3219C190400F6B398 /* Encryptor.h */; };
-		EB0518B6219C190400F6B398 /* Encryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0518B4219C190400F6B398 /* Encryptor.m */; };
+		565DD922219C81670024B7A4 /* UserDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 565DD920219C81670024B7A4 /* UserDataBase.xcdatamodeld */; };
+		565DD924219C82700024B7A4 /* UserDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 565DD920219C81670024B7A4 /* UserDataBase.xcdatamodeld */; };
+		565DD926219C82DA0024B7A4 /* UserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0518B0219C107F00F6B398 /* UserDetail.m */; };
+		565DD927219C82E10024B7A4 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B52219BD4C500CC6F33 /* UserDataManager.m */; };
+		EB0518B1219C107F00F6B398 /* UserDetail.h in Headers */ = {isa = PBXBuildFile; fileRef = EB0518AF219C107F00F6B398 /* UserDetail.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EB0518B2219C107F00F6B398 /* UserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0518B0219C107F00F6B398 /* UserDetail.m */; };
 		EB464B41219BD33100CC6F33 /* RandomUser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB464B37219BD33000CC6F33 /* RandomUser.framework */; };
 		EB464B46219BD33100CC6F33 /* RandomUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B45219BD33100CC6F33 /* RandomUserTests.m */; };
 		EB464B48219BD33100CC6F33 /* RandomUser.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B3A219BD33000CC6F33 /* RandomUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB464B53219BD4C500CC6F33 /* UserDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B51219BD4C500CC6F33 /* UserDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB464B54219BD4C500CC6F33 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B52219BD4C500CC6F33 /* UserDataManager.m */; };
-		EB464B57219BD56900CC6F33 /* UserStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B55219BD56900CC6F33 /* UserStoreManager.h */; };
-		EB464B58219BD56900CC6F33 /* UserStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B56219BD56900CC6F33 /* UserStoreManager.m */; };
-		EB464B5A219BD65700CC6F33 /* Users.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = EB464B59219BD65700CC6F33 /* Users.xcdatamodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,10 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EB0518AF219C107F00F6B398 /* UserDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
-		EB0518B0219C107F00F6B398 /* UserDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
-		EB0518B3219C190400F6B398 /* Encryptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Encryptor.h; sourceTree = "<group>"; };
-		EB0518B4219C190400F6B398 /* Encryptor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Encryptor.m; sourceTree = "<group>"; };
+		565DD921219C81670024B7A4 /* UserDataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserDataBase.xcdatamodel; sourceTree = "<group>"; };
+		EB0518AF219C107F00F6B398 /* UserDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDetail.h; sourceTree = "<group>"; };
+		EB0518B0219C107F00F6B398 /* UserDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDetail.m; sourceTree = "<group>"; };
 		EB464B37219BD33000CC6F33 /* RandomUser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomUser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB464B3A219BD33000CC6F33 /* RandomUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomUser.h; sourceTree = "<group>"; };
 		EB464B3B219BD33100CC6F33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,9 +42,6 @@
 		EB464B47219BD33100CC6F33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB464B51219BD4C500CC6F33 /* UserDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDataManager.h; sourceTree = "<group>"; };
 		EB464B52219BD4C500CC6F33 /* UserDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDataManager.m; sourceTree = "<group>"; };
-		EB464B55219BD56900CC6F33 /* UserStoreManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserStoreManager.h; sourceTree = "<group>"; };
-		EB464B56219BD56900CC6F33 /* UserStoreManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserStoreManager.m; sourceTree = "<group>"; };
-		EB464B59219BD65700CC6F33 /* Users.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Users.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,13 +88,9 @@
 				EB464B3B219BD33100CC6F33 /* Info.plist */,
 				EB464B51219BD4C500CC6F33 /* UserDataManager.h */,
 				EB464B52219BD4C500CC6F33 /* UserDataManager.m */,
-				EB464B55219BD56900CC6F33 /* UserStoreManager.h */,
-				EB464B56219BD56900CC6F33 /* UserStoreManager.m */,
-				EB464B59219BD65700CC6F33 /* Users.xcdatamodel */,
-				EB0518AF219C107F00F6B398 /* UserDetails.h */,
-				EB0518B0219C107F00F6B398 /* UserDetails.m */,
-				EB0518B3219C190400F6B398 /* Encryptor.h */,
-				EB0518B4219C190400F6B398 /* Encryptor.m */,
+				EB0518AF219C107F00F6B398 /* UserDetail.h */,
+				EB0518B0219C107F00F6B398 /* UserDetail.m */,
+				565DD920219C81670024B7A4 /* UserDataBase.xcdatamodeld */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
@@ -120,10 +111,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB0518B5219C190400F6B398 /* Encryptor.h in Headers */,
-				EB0518B1219C107F00F6B398 /* UserDetails.h in Headers */,
+				EB0518B1219C107F00F6B398 /* UserDetail.h in Headers */,
 				EB464B48219BD33100CC6F33 /* RandomUser.h in Headers */,
-				EB464B57219BD56900CC6F33 /* UserStoreManager.h in Headers */,
 				EB464B53219BD4C500CC6F33 /* UserDataManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,10 +214,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB0518B6219C190400F6B398 /* Encryptor.m in Sources */,
-				EB464B5A219BD65700CC6F33 /* Users.xcdatamodel in Sources */,
-				EB0518B2219C107F00F6B398 /* UserDetails.m in Sources */,
-				EB464B58219BD56900CC6F33 /* UserStoreManager.m in Sources */,
+				565DD922219C81670024B7A4 /* UserDataBase.xcdatamodeld in Sources */,
+				EB0518B2219C107F00F6B398 /* UserDetail.m in Sources */,
 				EB464B54219BD4C500CC6F33 /* UserDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,6 +225,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB464B46219BD33100CC6F33 /* RandomUserTests.m in Sources */,
+				565DD927219C82E10024B7A4 /* UserDataManager.m in Sources */,
+				565DD926219C82DA0024B7A4 /* UserDetail.m in Sources */,
+				565DD924219C82700024B7A4 /* UserDataBase.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +472,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		565DD920219C81670024B7A4 /* UserDataBase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				565DD921219C81670024B7A4 /* UserDataBase.xcdatamodel */,
+			);
+			currentVersion = 565DD921219C81670024B7A4 /* UserDataBase.xcdatamodel */;
+			path = UserDataBase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EB464B2E219BD33000CC6F33 /* Project object */;
 }
