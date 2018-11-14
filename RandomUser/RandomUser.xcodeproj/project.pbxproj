@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EB0518AA219C03CF00F6B398 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B52219BD4C500CC6F33 /* UserDataManager.m */; };
-		EB0518B1219C107F00F6B398 /* UserDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = EB0518AF219C107F00F6B398 /* UserDetails.h */; };
+		EB0518B1219C107F00F6B398 /* UserDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = EB0518AF219C107F00F6B398 /* UserDetails.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB0518B2219C107F00F6B398 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0518B0219C107F00F6B398 /* UserDetails.m */; };
 		EB0518B5219C190400F6B398 /* Encryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EB0518B3219C190400F6B398 /* Encryptor.h */; };
 		EB0518B6219C190400F6B398 /* Encryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0518B4219C190400F6B398 /* Encryptor.m */; };
@@ -17,7 +16,7 @@
 		EB464B48219BD33100CC6F33 /* RandomUser.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B3A219BD33000CC6F33 /* RandomUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB464B53219BD4C500CC6F33 /* UserDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B51219BD4C500CC6F33 /* UserDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB464B54219BD4C500CC6F33 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B52219BD4C500CC6F33 /* UserDataManager.m */; };
-		EB464B57219BD56900CC6F33 /* UserStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B55219BD56900CC6F33 /* UserStoreManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EB464B57219BD56900CC6F33 /* UserStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B55219BD56900CC6F33 /* UserStoreManager.h */; };
 		EB464B58219BD56900CC6F33 /* UserStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B56219BD56900CC6F33 /* UserStoreManager.m */; };
 		EB464B5A219BD65700CC6F33 /* Users.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = EB464B59219BD65700CC6F33 /* Users.xcdatamodel */; };
 /* End PBXBuildFile section */
@@ -238,7 +237,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB0518AA219C03CF00F6B398 /* UserDataManager.m in Sources */,
 				EB464B46219BD33100CC6F33 /* RandomUserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

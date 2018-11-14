@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <RandomUser/UserDataManager.h>
+#import ""
 
 @interface RandomUserTests : XCTestCase
 

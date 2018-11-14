@@ -36,7 +36,7 @@
     
     
     NSURL *url = [NSURL URLWithString:urlString];
-    
+    NSLog("GetUserList: URL: %@",url.absoluteString);
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (error==nil) {
@@ -45,6 +45,7 @@
             NSDictionary *apiResult = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
             NSDictionary *info = [apiResult objectForKey:@"info"];
             NSArray *list = [apiResult objectForKey:@"results"];
+            NSLog("GetUserList: URL: %d",list.count);
             if (list.count >0) {
                 for (NSDictionary *userDict in list) {
                     UserDetails *details = [[UserDetails alloc]init];
