@@ -9,6 +9,7 @@
 #import "UserStoreManager.h"
 #import "User+CoreDataClass.h"
 #import "User+CoreDataProperties.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation UserStoreManager
 @synthesize persistentContainer = _persistentContainer;
@@ -23,10 +24,22 @@
 }
 
 
--(void)saveUserDataFromResponse:(NSDictionary *)apiResponse {
+-(void)saveUserDataFromResponse:(NSArray <UserDetails *> *)userList; {
     NSManagedObjectContext *context = self.persistentContainer.viewContext;
-    User *user = [[User alloc]initWithEntity:"User" insertIntoManagedObjectContext:context];
-    
+   
+    if (userList.count > 0) {
+        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
+        for (UserDetails *details in userList) {
+            [entityDescription setValue:details.name forKey:@"name"];
+            [entityDescription setValue:details.gender forKey:@"gender"];
+            [entityDescription setValue:details.email forKey:@"email"];
+            [entityDescription setValue:[NSNumber numberWithUnsignedInteger:details.age] forKey:@"age"];
+            [entityDescription setValue:details.dob forKey:@"dob"];
+            [entityDescription setValue:details.seed forKey:@"seed"];
+        }
+        
+        [self saveContext];
+    }
 }
 
 #pragma mark - Core Data stack

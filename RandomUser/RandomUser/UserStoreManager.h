@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "UserDetails.h"
 
 @interface UserStoreManager : NSObject
 
@@ -17,6 +18,5 @@
 
 //method to save the context
 - (void)saveContext;
-
--(void)saveUserDataFromResponse:(NSDictionary *)apiResponse;
+-(void)saveUserDataFromResponse:(NSArray <UserDetails *> *)userList;
 @end

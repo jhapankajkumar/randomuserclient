@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB0518AA219C03CF00F6B398 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B52219BD4C500CC6F33 /* UserDataManager.m */; };
+		EB0518B1219C107F00F6B398 /* UserDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = EB0518AF219C107F00F6B398 /* UserDetails.h */; };
+		EB0518B2219C107F00F6B398 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0518B0219C107F00F6B398 /* UserDetails.m */; };
+		EB0518B5219C190400F6B398 /* Encryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EB0518B3219C190400F6B398 /* Encryptor.h */; };
+		EB0518B6219C190400F6B398 /* Encryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0518B4219C190400F6B398 /* Encryptor.m */; };
 		EB464B41219BD33100CC6F33 /* RandomUser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB464B37219BD33000CC6F33 /* RandomUser.framework */; };
 		EB464B46219BD33100CC6F33 /* RandomUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B45219BD33100CC6F33 /* RandomUserTests.m */; };
 		EB464B48219BD33100CC6F33 /* RandomUser.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B3A219BD33000CC6F33 /* RandomUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -15,10 +20,6 @@
 		EB464B57219BD56900CC6F33 /* UserStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B55219BD56900CC6F33 /* UserStoreManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EB464B58219BD56900CC6F33 /* UserStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B56219BD56900CC6F33 /* UserStoreManager.m */; };
 		EB464B5A219BD65700CC6F33 /* Users.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = EB464B59219BD65700CC6F33 /* Users.xcdatamodel */; };
-		EB464B75219BD99300CC6F33 /* User+CoreDataProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B71219BD99300CC6F33 /* User+CoreDataProperties.h */; };
-		EB464B76219BD99300CC6F33 /* User+CoreDataClass.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B72219BD99300CC6F33 /* User+CoreDataClass.h */; };
-		EB464B77219BD99300CC6F33 /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B73219BD99300CC6F33 /* User+CoreDataClass.m */; };
-		EB464B78219BD99300CC6F33 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B74219BD99300CC6F33 /* User+CoreDataProperties.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB0518AF219C107F00F6B398 /* UserDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
+		EB0518B0219C107F00F6B398 /* UserDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
+		EB0518B3219C190400F6B398 /* Encryptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Encryptor.h; sourceTree = "<group>"; };
+		EB0518B4219C190400F6B398 /* Encryptor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Encryptor.m; sourceTree = "<group>"; };
 		EB464B37219BD33000CC6F33 /* RandomUser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomUser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB464B3A219BD33000CC6F33 /* RandomUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomUser.h; sourceTree = "<group>"; };
 		EB464B3B219BD33100CC6F33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,10 +48,6 @@
 		EB464B55219BD56900CC6F33 /* UserStoreManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserStoreManager.h; sourceTree = "<group>"; };
 		EB464B56219BD56900CC6F33 /* UserStoreManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserStoreManager.m; sourceTree = "<group>"; };
 		EB464B59219BD65700CC6F33 /* Users.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Users.xcdatamodel; sourceTree = "<group>"; };
-		EB464B71219BD99300CC6F33 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
-		EB464B72219BD99300CC6F33 /* User+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
-		EB464B73219BD99300CC6F33 /* User+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
-		EB464B74219BD99300CC6F33 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,10 +90,6 @@
 		EB464B39219BD33000CC6F33 /* RandomUser */ = {
 			isa = PBXGroup;
 			children = (
-				EB464B71219BD99300CC6F33 /* User+CoreDataProperties.h */,
-				EB464B74219BD99300CC6F33 /* User+CoreDataProperties.m */,
-				EB464B72219BD99300CC6F33 /* User+CoreDataClass.h */,
-				EB464B73219BD99300CC6F33 /* User+CoreDataClass.m */,
 				EB464B3A219BD33000CC6F33 /* RandomUser.h */,
 				EB464B3B219BD33100CC6F33 /* Info.plist */,
 				EB464B51219BD4C500CC6F33 /* UserDataManager.h */,
@@ -100,6 +97,10 @@
 				EB464B55219BD56900CC6F33 /* UserStoreManager.h */,
 				EB464B56219BD56900CC6F33 /* UserStoreManager.m */,
 				EB464B59219BD65700CC6F33 /* Users.xcdatamodel */,
+				EB0518AF219C107F00F6B398 /* UserDetails.h */,
+				EB0518B0219C107F00F6B398 /* UserDetails.m */,
+				EB0518B3219C190400F6B398 /* Encryptor.h */,
+				EB0518B4219C190400F6B398 /* Encryptor.m */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
@@ -120,11 +121,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB0518B5219C190400F6B398 /* Encryptor.h in Headers */,
+				EB0518B1219C107F00F6B398 /* UserDetails.h in Headers */,
 				EB464B48219BD33100CC6F33 /* RandomUser.h in Headers */,
-				EB464B75219BD99300CC6F33 /* User+CoreDataProperties.h in Headers */,
 				EB464B57219BD56900CC6F33 /* UserStoreManager.h in Headers */,
 				EB464B53219BD4C500CC6F33 /* UserDataManager.h in Headers */,
-				EB464B76219BD99300CC6F33 /* User+CoreDataClass.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,10 +226,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB464B78219BD99300CC6F33 /* User+CoreDataProperties.m in Sources */,
+				EB0518B6219C190400F6B398 /* Encryptor.m in Sources */,
 				EB464B5A219BD65700CC6F33 /* Users.xcdatamodel in Sources */,
+				EB0518B2219C107F00F6B398 /* UserDetails.m in Sources */,
 				EB464B58219BD56900CC6F33 /* UserStoreManager.m in Sources */,
-				EB464B77219BD99300CC6F33 /* User+CoreDataClass.m in Sources */,
 				EB464B54219BD4C500CC6F33 /* UserDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB0518AA219C03CF00F6B398 /* UserDataManager.m in Sources */,
 				EB464B46219BD33100CC6F33 /* RandomUserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
