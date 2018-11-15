@@ -9,9 +9,12 @@
 #import "ViewController.h"
 #import <RandomUser/RandomUser.h>
 #import "UserTableViewCell.h"
+#import "UserDetailViewController.h"
 
-@interface ViewController ()
-@property (nonatomic,strong) NSMutableArray *userList;
+@interface ViewController () {
+    NSIndexPath *selectedIndexPath;
+}
+
 @end
 
 @implementation ViewController
@@ -19,24 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self getListOfuser];
+    [self initialSetup];
 }
 
 
 -(void)initialSetup {
-    self.userList = [[NSMutableArray alloc]init];
     self.listTableView.estimatedRowHeight =  100;
     self.listTableView.rowHeight = UITableViewAutomaticDimension;
-}
--(void)getListOfuser {
-    
-    [[UserDataManager sharedInstance]getUserListWithSeed:@"002" gender:@"male" resultCount:20 withCompletionBlock:^(NSArray<UserData *> * _Nullable users, NSError * _Nullable error) {
-        if (error == nil) {
-            self.userList = users;
-            [self.listTableView reloadData];
-        }
-    }];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,5 +52,22 @@
     [cell setData:data];
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    selectedIndexPath = indexPath;
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
+    [self performSegueWithIdentifier:@"fromListToUserDetail" sender:selectedIndexPath];
+    
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     if ([segue.identifier isEqualToString:@"fromListToUserDetail"]){
+        UserDetailViewController *detailVc = (UserDetailViewController *)segue.destinationViewController;
+        [detailVc setUserDetail:[self.userList objectAtIndex:selectedIndexPath.row]];
+    }
+}
+
 
 @end

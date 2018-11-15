@@ -26,7 +26,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 
         NSLog(@"Current user’s home directory is %@", NSHomeDirectory());
-        [[UserDataManager sharedInstance] getUserListWithSeed:@"002" gender:@"female" resultCount:1000 withCompletionBlock:^(NSArray *users, NSError *error) {
+        [[UserDataManager sharedInstance] getUserListWithSeed:@"002" gender:@"female" resultCount:10 withCompletionBlock:^(NSArray *users, NSError *error) {
             XCTAssert(true);
             [onCompleteExpectation fulfill];
         }];

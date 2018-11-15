@@ -176,7 +176,8 @@ withCompletionBlock:(void(^)(BOOL isSuccess))completionBlock {
         }
         
         if ([dict objectForKey:kEmailKey]) {
-            detail.email = [dict objectForKey:kEmailKey];
+            NSString *email = [dict objectForKey:kEmailKey];
+            detail.email = [self decryptDataFromText:email];
         }
         
         if ([dict objectForKey:kDOBKey]) {
@@ -200,7 +201,7 @@ withCompletionBlock:(void(^)(BOOL isSuccess))completionBlock {
     [userTable setValue:userData.name forKey:@"name"];
     [userTable setValue:userData.gender forKey:@"gender"];
     NSString *enccryptedMail = [self getEncryptedText:userData.email];
-    [userTable setValue:userData.email forKey:@"email"];
+    [userTable setValue:enccryptedMail forKey:@"email"];
     [userTable setValue:[NSNumber numberWithUnsignedInteger:userData.age] forKey:@"age"];
     [userTable setValue:userData.dob forKey:@"dob"];
     [userTable setValue:userData.seed forKey:@"seed"];
@@ -217,12 +218,59 @@ withCompletionBlock:(void(^)(BOOL isSuccess))completionBlock {
                                             password:kHexKey
                                                error:&error];
     
-    NSString *encryptedString = [[NSString alloc]initWithData:encryptedData encoding:NSUTF8StringEncoding];
-    NSLog(@"Encrypted Email %@", encryptedString);
+    NSString *encryptedString = [self hexadecimalStringFromData:encryptedData];
+    NSLog(@"Encrypted Data lenght %lu", (unsigned long)encryptedData.length);
     return encryptedString;
     
 }
 
+
+-(NSString *)decryptDataFromText:(NSString *)hex {
+    NSData *encryptedData = [self dataFromHexString:hex];
+    NSError *error;
+    NSData *decryptedData = [RNDecryptor decryptData:encryptedData
+                                        withPassword:kHexKey
+                                               error:&error];
+    NSString *email = [[NSString alloc]initWithData:decryptedData encoding:NSUTF8StringEncoding];
+    return email;
+}
+
+- (NSString *)hexadecimalStringFromData:(NSData *)data {
+    /* Returns hexadecimal string of NSData. Empty string if data is empty.   */
+    
+    const unsigned char *dataBuffer = (const unsigned char *)[data bytes];
+    
+    if (!dataBuffer)
+        return [NSString string];
+    
+    NSUInteger          dataLength  = [data length];
+    NSMutableString     *hexString  = [NSMutableString stringWithCapacity:(dataLength * 2)];
+    
+    for (int i = 0; i < dataLength; ++i)
+        [hexString appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)dataBuffer[i]]];
+    
+    return [NSString stringWithString:hexString];
+}
+
+- (NSData *)dataFromHexString:(NSString *)string
+{
+    string = [string lowercaseString];
+    NSMutableData *data= [NSMutableData new];
+    unsigned char whole_byte;
+    char byte_chars[3] = {'\0','\0','\0'};
+    int i = 0;
+    int length = string.length;
+    while (i < length-1) {
+        char c = [string characterAtIndex:i++];
+        if (c < '0' || (c > '9' && c < 'a') || c > 'f')
+            continue;
+        byte_chars[0] = c;
+        byte_chars[1] = [string characterAtIndex:i++];
+        whole_byte = strtol(byte_chars, NULL, 16);
+        [data appendBytes:&whole_byte length:1];
+    }
+    return data;
+}
 
 
 -(BOOL)deleteUserData:(UserData *)userData {

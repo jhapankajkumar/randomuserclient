@@ -1,0 +1,16 @@
+PODS:
+  - MFSideMenu (0.5.5)
+
+DEPENDENCIES:
+  - MFSideMenu
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MFSideMenu
+
+SPEC CHECKSUMS:
+  MFSideMenu: 268122e6894f2747fc3a2b48578100b232506c60
+
+PODFILE CHECKSUM: 9da47a64d21d60c6fbafa4a65d9bdcda27b5399c
+
+COCOAPODS: 1.5.3

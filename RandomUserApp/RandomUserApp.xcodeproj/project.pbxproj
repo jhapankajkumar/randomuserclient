@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		565DD94C219C8BBC0024B7A4 /* RandomUser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565DD94A219C8BB10024B7A4 /* RandomUser.framework */; };
 		565DD94D219C8BBC0024B7A4 /* RandomUser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 565DD94A219C8BB10024B7A4 /* RandomUser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		56976470219DC9360053C0C8 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5697646F219DC9360053C0C8 /* LeftViewController.m */; };
+		56976473219DD38E0053C0C8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56976472219DD38E0053C0C8 /* MainViewController.m */; };
+		8C9B2831DB611F47F3163E6A /* libPods-RandomUserApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D94EC53B74D72134B0E039 /* libPods-RandomUserApp.a */; };
 		EB05188E219BE4F300F6B398 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB05188D219BE4F300F6B398 /* AppDelegate.m */; };
 		EB051891219BE4F300F6B398 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB051890219BE4F300F6B398 /* ViewController.m */; };
 		EB051894219BE4F300F6B398 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB051892219BE4F300F6B398 /* Main.storyboard */; };
@@ -34,7 +37,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		48F78586A66EEC4EED2C5BF4 /* Pods-RandomUserApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUserApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RandomUserApp/Pods-RandomUserApp.debug.xcconfig"; sourceTree = "<group>"; };
+		52D94EC53B74D72134B0E039 /* libPods-RandomUserApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RandomUserApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		565DD94A219C8BB10024B7A4 /* RandomUser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RandomUser.framework; path = RandomUserApp/RandomUser.framework; sourceTree = "<group>"; };
+		5697646E219DC9360053C0C8 /* LeftViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		5697646F219DC9360053C0C8 /* LeftViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
+		56976471219DD38E0053C0C8 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		56976472219DD38E0053C0C8 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		DD790F3F0C48D737F1A938D5 /* Pods-RandomUserApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUserApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RandomUserApp/Pods-RandomUserApp.release.xcconfig"; sourceTree = "<group>"; };
 		EB051889219BE4F300F6B398 /* RandomUserApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomUserApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB05188C219BE4F300F6B398 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EB05188D219BE4F300F6B398 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -57,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				565DD94C219C8BBC0024B7A4 /* RandomUser.framework in Frameworks */,
+				8C9B2831DB611F47F3163E6A /* libPods-RandomUserApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,8 +78,33 @@
 			isa = PBXGroup;
 			children = (
 				565DD94A219C8BB10024B7A4 /* RandomUser.framework */,
+				52D94EC53B74D72134B0E039 /* libPods-RandomUserApp.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5697646A219DBB9A0053C0C8 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EB05188F219BE4F300F6B398 /* ViewController.h */,
+				EB051890219BE4F300F6B398 /* ViewController.m */,
+				EBAAF280219D3101002EFF7B /* UserDetailViewController.h */,
+				EBAAF281219D3101002EFF7B /* UserDetailViewController.m */,
+				5697646E219DC9360053C0C8 /* LeftViewController.h */,
+				5697646F219DC9360053C0C8 /* LeftViewController.m */,
+				56976471219DD38E0053C0C8 /* MainViewController.h */,
+				56976472219DD38E0053C0C8 /* MainViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E9E11271CEC93B31CB90E9C7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				48F78586A66EEC4EED2C5BF4 /* Pods-RandomUserApp.debug.xcconfig */,
+				DD790F3F0C48D737F1A938D5 /* Pods-RandomUserApp.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		EB051880219BE4F200F6B398 = {
@@ -77,6 +113,7 @@
 				EB05188B219BE4F300F6B398 /* RandomUserApp */,
 				EB05188A219BE4F300F6B398 /* Products */,
 				565DD949219C8BB00024B7A4 /* Frameworks */,
+				E9E11271CEC93B31CB90E9C7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,13 +128,10 @@
 		EB05188B219BE4F300F6B398 /* RandomUserApp */ = {
 			isa = PBXGroup;
 			children = (
+				5697646A219DBB9A0053C0C8 /* ViewController */,
 				EBF9E701219D217900F8B78F /* CustomeViews */,
 				EB05188C219BE4F300F6B398 /* AppDelegate.h */,
 				EB05188D219BE4F300F6B398 /* AppDelegate.m */,
-				EB05188F219BE4F300F6B398 /* ViewController.h */,
-				EB051890219BE4F300F6B398 /* ViewController.m */,
-				EBAAF280219D3101002EFF7B /* UserDetailViewController.h */,
-				EBAAF281219D3101002EFF7B /* UserDetailViewController.m */,
 				EB051892219BE4F300F6B398 /* Main.storyboard */,
 				EB051895219BE4F300F6B398 /* Assets.xcassets */,
 				EB051897219BE4F300F6B398 /* LaunchScreen.storyboard */,
@@ -123,6 +157,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB05189F219BE4F300F6B398 /* Build configuration list for PBXNativeTarget "RandomUserApp" */;
 			buildPhases = (
+				0A87ABA123603A8620CC9588 /* [CP] Check Pods Manifest.lock */,
 				EB051885219BE4F300F6B398 /* Sources */,
 				EB051886219BE4F300F6B398 /* Frameworks */,
 				EB051887219BE4F300F6B398 /* Resources */,
@@ -182,6 +217,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0A87ABA123603A8620CC9588 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RandomUserApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EB051885219BE4F300F6B398 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -190,6 +250,8 @@
 				EBF9E704219D21B700F8B78F /* UserTableViewCell.m in Sources */,
 				EB051891219BE4F300F6B398 /* ViewController.m in Sources */,
 				EB05189C219BE4F300F6B398 /* main.m in Sources */,
+				56976470219DC9360053C0C8 /* LeftViewController.m in Sources */,
+				56976473219DD38E0053C0C8 /* MainViewController.m in Sources */,
 				EBAAF282219D3101002EFF7B /* UserDetailViewController.m in Sources */,
 				EB05188E219BE4F300F6B398 /* AppDelegate.m in Sources */,
 			);
@@ -329,6 +391,7 @@
 		};
 		EB0518A0219BE4F300F6B398 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48F78586A66EEC4EED2C5BF4 /* Pods-RandomUserApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -349,6 +412,7 @@
 		};
 		EB0518A1219BE4F300F6B398 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD790F3F0C48D737F1A938D5 /* Pods-RandomUserApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

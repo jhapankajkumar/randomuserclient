@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RandomUser/RandomUser.h>
 
 @interface ViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 
-
+@property (nonatomic,strong) NSArray *userList;
 @end
 
