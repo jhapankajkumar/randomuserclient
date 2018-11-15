@@ -17,4 +17,4 @@ FOUNDATION_EXPORT const unsigned char RandomUserVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <RandomUser/PublicHeader.h>
 
 #import <RandomUser/UserDataManager.h>
-#import <RandomUser/UserDetail.h>
+#import <RandomUser/UserData.h>

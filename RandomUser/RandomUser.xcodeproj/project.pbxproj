@@ -8,16 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		565DD922219C81670024B7A4 /* UserDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 565DD920219C81670024B7A4 /* UserDataBase.xcdatamodeld */; };
-		565DD924219C82700024B7A4 /* UserDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 565DD920219C81670024B7A4 /* UserDataBase.xcdatamodeld */; };
-		565DD926219C82DA0024B7A4 /* UserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0518B0219C107F00F6B398 /* UserDetail.m */; };
-		565DD927219C82E10024B7A4 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B52219BD4C500CC6F33 /* UserDataManager.m */; };
-		EB0518B1219C107F00F6B398 /* UserDetail.h in Headers */ = {isa = PBXBuildFile; fileRef = EB0518AF219C107F00F6B398 /* UserDetail.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EB0518B2219C107F00F6B398 /* UserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0518B0219C107F00F6B398 /* UserDetail.m */; };
+		EB0518B1219C107F00F6B398 /* UserData.h in Headers */ = {isa = PBXBuildFile; fileRef = EB0518AF219C107F00F6B398 /* UserData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EB0518B2219C107F00F6B398 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0518B0219C107F00F6B398 /* UserData.m */; };
 		EB464B41219BD33100CC6F33 /* RandomUser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB464B37219BD33000CC6F33 /* RandomUser.framework */; };
 		EB464B46219BD33100CC6F33 /* RandomUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B45219BD33100CC6F33 /* RandomUserTests.m */; };
 		EB464B48219BD33100CC6F33 /* RandomUser.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B3A219BD33000CC6F33 /* RandomUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB464B53219BD4C500CC6F33 /* UserDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EB464B51219BD4C500CC6F33 /* UserDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB464B54219BD4C500CC6F33 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB464B52219BD4C500CC6F33 /* UserDataManager.m */; };
+		EBAAF292219D67FA002EFF7B /* RNDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EBAAF288219D67FA002EFF7B /* RNDecryptor.h */; };
+		EBAAF293219D67FA002EFF7B /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF289219D67FA002EFF7B /* RNCryptor.m */; };
+		EBAAF295219D67FA002EFF7B /* RNCryptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EBAAF28A219D67FA002EFF7B /* RNCryptor+Private.h */; };
+		EBAAF296219D67FA002EFF7B /* RNCryptor-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = EBAAF28B219D67FA002EFF7B /* RNCryptor-Prefix.pch */; };
+		EBAAF297219D67FA002EFF7B /* RNCryptorEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = EBAAF28C219D67FA002EFF7B /* RNCryptorEngine.h */; };
+		EBAAF298219D67FA002EFF7B /* RNEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EBAAF28D219D67FA002EFF7B /* RNEncryptor.h */; };
+		EBAAF299219D67FA002EFF7B /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EBAAF28E219D67FA002EFF7B /* RNCryptor.h */; };
+		EBAAF29A219D67FA002EFF7B /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF28F219D67FA002EFF7B /* RNDecryptor.m */; };
+		EBAAF29C219D67FA002EFF7B /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF290219D67FA002EFF7B /* RNEncryptor.m */; };
+		EBAAF29E219D67FA002EFF7B /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF291219D67FA002EFF7B /* RNCryptorEngine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,8 +39,8 @@
 
 /* Begin PBXFileReference section */
 		565DD921219C81670024B7A4 /* UserDataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserDataBase.xcdatamodel; sourceTree = "<group>"; };
-		EB0518AF219C107F00F6B398 /* UserDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDetail.h; sourceTree = "<group>"; };
-		EB0518B0219C107F00F6B398 /* UserDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDetail.m; sourceTree = "<group>"; };
+		EB0518AF219C107F00F6B398 /* UserData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
+		EB0518B0219C107F00F6B398 /* UserData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		EB464B37219BD33000CC6F33 /* RandomUser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomUser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB464B3A219BD33000CC6F33 /* RandomUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomUser.h; sourceTree = "<group>"; };
 		EB464B3B219BD33100CC6F33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,6 +49,16 @@
 		EB464B47219BD33100CC6F33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB464B51219BD4C500CC6F33 /* UserDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDataManager.h; sourceTree = "<group>"; };
 		EB464B52219BD4C500CC6F33 /* UserDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDataManager.m; sourceTree = "<group>"; };
+		EBAAF288219D67FA002EFF7B /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
+		EBAAF289219D67FA002EFF7B /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
+		EBAAF28A219D67FA002EFF7B /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
+		EBAAF28B219D67FA002EFF7B /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
+		EBAAF28C219D67FA002EFF7B /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
+		EBAAF28D219D67FA002EFF7B /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
+		EBAAF28E219D67FA002EFF7B /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		EBAAF28F219D67FA002EFF7B /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
+		EBAAF290219D67FA002EFF7B /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
+		EBAAF291219D67FA002EFF7B /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,13 +101,14 @@
 		EB464B39219BD33000CC6F33 /* RandomUser */ = {
 			isa = PBXGroup;
 			children = (
+				EBAAF287219D67FA002EFF7B /* RNCryptor */,
 				EB464B3A219BD33000CC6F33 /* RandomUser.h */,
-				EB464B3B219BD33100CC6F33 /* Info.plist */,
 				EB464B51219BD4C500CC6F33 /* UserDataManager.h */,
 				EB464B52219BD4C500CC6F33 /* UserDataManager.m */,
-				EB0518AF219C107F00F6B398 /* UserDetail.h */,
-				EB0518B0219C107F00F6B398 /* UserDetail.m */,
+				EB0518AF219C107F00F6B398 /* UserData.h */,
+				EB0518B0219C107F00F6B398 /* UserData.m */,
 				565DD920219C81670024B7A4 /* UserDataBase.xcdatamodeld */,
+				EB464B3B219BD33100CC6F33 /* Info.plist */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
@@ -104,6 +122,23 @@
 			path = RandomUserTests;
 			sourceTree = "<group>";
 		};
+		EBAAF287219D67FA002EFF7B /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				EBAAF288219D67FA002EFF7B /* RNDecryptor.h */,
+				EBAAF289219D67FA002EFF7B /* RNCryptor.m */,
+				EBAAF28A219D67FA002EFF7B /* RNCryptor+Private.h */,
+				EBAAF28B219D67FA002EFF7B /* RNCryptor-Prefix.pch */,
+				EBAAF28C219D67FA002EFF7B /* RNCryptorEngine.h */,
+				EBAAF28D219D67FA002EFF7B /* RNEncryptor.h */,
+				EBAAF28E219D67FA002EFF7B /* RNCryptor.h */,
+				EBAAF28F219D67FA002EFF7B /* RNDecryptor.m */,
+				EBAAF290219D67FA002EFF7B /* RNEncryptor.m */,
+				EBAAF291219D67FA002EFF7B /* RNCryptorEngine.m */,
+			);
+			path = RNCryptor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -111,9 +146,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB0518B1219C107F00F6B398 /* UserDetail.h in Headers */,
+				EBAAF298219D67FA002EFF7B /* RNEncryptor.h in Headers */,
+				EBAAF297219D67FA002EFF7B /* RNCryptorEngine.h in Headers */,
+				EBAAF296219D67FA002EFF7B /* RNCryptor-Prefix.pch in Headers */,
+				EBAAF299219D67FA002EFF7B /* RNCryptor.h in Headers */,
+				EB0518B1219C107F00F6B398 /* UserData.h in Headers */,
+				EBAAF295219D67FA002EFF7B /* RNCryptor+Private.h in Headers */,
 				EB464B48219BD33100CC6F33 /* RandomUser.h in Headers */,
 				EB464B53219BD4C500CC6F33 /* UserDataManager.h in Headers */,
+				EBAAF292219D67FA002EFF7B /* RNDecryptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,9 +255,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBAAF29C219D67FA002EFF7B /* RNEncryptor.m in Sources */,
 				565DD922219C81670024B7A4 /* UserDataBase.xcdatamodeld in Sources */,
-				EB0518B2219C107F00F6B398 /* UserDetail.m in Sources */,
+				EB0518B2219C107F00F6B398 /* UserData.m in Sources */,
 				EB464B54219BD4C500CC6F33 /* UserDataManager.m in Sources */,
+				EBAAF29E219D67FA002EFF7B /* RNCryptorEngine.m in Sources */,
+				EBAAF29A219D67FA002EFF7B /* RNDecryptor.m in Sources */,
+				EBAAF293219D67FA002EFF7B /* RNCryptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,9 +270,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB464B46219BD33100CC6F33 /* RandomUserTests.m in Sources */,
-				565DD927219C82E10024B7A4 /* UserDataManager.m in Sources */,
-				565DD926219C82DA0024B7A4 /* UserDetail.m in Sources */,
-				565DD924219C82700024B7A4 /* UserDataBase.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,8 @@
 		EB051896219BE4F300F6B398 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB051895219BE4F300F6B398 /* Assets.xcassets */; };
 		EB051899219BE4F300F6B398 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB051897219BE4F300F6B398 /* LaunchScreen.storyboard */; };
 		EB05189C219BE4F300F6B398 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB05189B219BE4F300F6B398 /* main.m */; };
+		EBAAF282219D3101002EFF7B /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF281219D3101002EFF7B /* UserDetailViewController.m */; };
+		EBF9E704219D21B700F8B78F /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF9E703219D21B700F8B78F /* UserTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +45,10 @@
 		EB051898219BE4F300F6B398 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB05189A219BE4F300F6B398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB05189B219BE4F300F6B398 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EBAAF280219D3101002EFF7B /* UserDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
+		EBAAF281219D3101002EFF7B /* UserDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
+		EBF9E702219D21B700F8B78F /* UserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
+		EBF9E703219D21B700F8B78F /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +91,13 @@
 		EB05188B219BE4F300F6B398 /* RandomUserApp */ = {
 			isa = PBXGroup;
 			children = (
+				EBF9E701219D217900F8B78F /* CustomeViews */,
 				EB05188C219BE4F300F6B398 /* AppDelegate.h */,
 				EB05188D219BE4F300F6B398 /* AppDelegate.m */,
 				EB05188F219BE4F300F6B398 /* ViewController.h */,
 				EB051890219BE4F300F6B398 /* ViewController.m */,
+				EBAAF280219D3101002EFF7B /* UserDetailViewController.h */,
+				EBAAF281219D3101002EFF7B /* UserDetailViewController.m */,
 				EB051892219BE4F300F6B398 /* Main.storyboard */,
 				EB051895219BE4F300F6B398 /* Assets.xcassets */,
 				EB051897219BE4F300F6B398 /* LaunchScreen.storyboard */,
@@ -96,6 +105,15 @@
 				EB05189B219BE4F300F6B398 /* main.m */,
 			);
 			path = RandomUserApp;
+			sourceTree = "<group>";
+		};
+		EBF9E701219D217900F8B78F /* CustomeViews */ = {
+			isa = PBXGroup;
+			children = (
+				EBF9E702219D21B700F8B78F /* UserTableViewCell.h */,
+				EBF9E703219D21B700F8B78F /* UserTableViewCell.m */,
+			);
+			path = CustomeViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,8 +187,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBF9E704219D21B700F8B78F /* UserTableViewCell.m in Sources */,
 				EB051891219BE4F300F6B398 /* ViewController.m in Sources */,
 				EB05189C219BE4F300F6B398 /* main.m in Sources */,
+				EBAAF282219D3101002EFF7B /* UserDetailViewController.m in Sources */,
 				EB05188E219BE4F300F6B398 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

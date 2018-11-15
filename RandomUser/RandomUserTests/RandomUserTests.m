@@ -21,7 +21,7 @@
 }
 
 
--(void)test_001_getuserList {
+-(void)test_001_getUserList {
     __block XCTestExpectation * onCompleteExpectation = [self expectationWithDescription:@"onComplete"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 
@@ -35,13 +35,34 @@
     [self waitForExpectations:[NSArray arrayWithObjects:onCompleteExpectation, nil] timeout:100];
 }
 
--(void)test_002_savedUser {
+-(void)test_002_getUserFromCache {
     __block XCTestExpectation * onCompleteExpectation = [self expectationWithDescription:@"onComplete"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
         NSLog(@"Current user’s home directory is %@", NSHomeDirectory());
-        [[UserDataManager sharedInstance]getStoredUserFromCacheWithCompletionBlock:^(NSArray<UserDetail *> *list) {
+        [[UserDataManager sharedInstance] getUserListFromCacheWithCompletionBlock:^(NSArray<UserData *> * _Nullable list) {
             NSLog(@"%@",list);
+            [onCompleteExpectation fulfill];
+        }];
+    });
+    
+    [self waitForExpectations:[NSArray arrayWithObjects:onCompleteExpectation, nil] timeout:100];
+}
+
+-(void)test_003_cacheUser {
+    __block XCTestExpectation * onCompleteExpectation = [self expectationWithDescription:@"onComplete"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        UserData *data = [[UserData alloc]init];
+        data.seed = @"677745";
+        data.email = @"random@gmail.com";
+        data.gender = @"male";
+        data.name = @"test user";
+        data.age = 29;
+        data.dob = @"Today";
+        
+        [[UserDataManager sharedInstance] cacheUser:data withCompletionBlock:^(BOOL isSuccess) {
+            NSLog(@"%d",isSuccess);
             [onCompleteExpectation fulfill];
         }];
     });
@@ -54,10 +75,6 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
