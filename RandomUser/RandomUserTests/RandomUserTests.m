@@ -27,7 +27,8 @@
 
         NSLog(@"Current user’s home directory is %@", NSHomeDirectory());
         [[UserDataManager sharedInstance] getUserListWithSeed:@"002" gender:@"female" resultCount:10 withCompletionBlock:^(NSArray *users, NSError *error) {
-            XCTAssert(true);
+            XCTAssertEqual(users.count,10);
+            XCTAssertNil(error);
             [onCompleteExpectation fulfill];
         }];
     });
@@ -35,21 +36,7 @@
     [self waitForExpectations:[NSArray arrayWithObjects:onCompleteExpectation, nil] timeout:100];
 }
 
--(void)test_002_getUserFromCache {
-    __block XCTestExpectation * onCompleteExpectation = [self expectationWithDescription:@"onComplete"];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        
-        NSLog(@"Current user’s home directory is %@", NSHomeDirectory());
-        [[UserDataManager sharedInstance] getUserListFromCacheWithCompletionBlock:^(NSArray<UserData *> * _Nullable list) {
-            NSLog(@"%@",list);
-            [onCompleteExpectation fulfill];
-        }];
-    });
-    
-    [self waitForExpectations:[NSArray arrayWithObjects:onCompleteExpectation, nil] timeout:100];
-}
-
--(void)test_003_cacheUser {
+-(void)test_002_storeUserToCache {
     __block XCTestExpectation * onCompleteExpectation = [self expectationWithDescription:@"onComplete"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
@@ -62,7 +49,7 @@
         data.dob = @"Today";
         
         [[UserDataManager sharedInstance] cacheUser:data withCompletionBlock:^(BOOL isSuccess) {
-            NSLog(@"%d",isSuccess);
+            XCTAssertTrue(isSuccess);
             [onCompleteExpectation fulfill];
         }];
     });
@@ -70,17 +57,63 @@
     [self waitForExpectations:[NSArray arrayWithObjects:onCompleteExpectation, nil] timeout:100];
 }
 
+
+-(void)test_003_getUserFromCache {
+    __block XCTestExpectation * onCompleteExpectation = [self expectationWithDescription:@"onComplete"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        UserData *data = [[UserData alloc]init];
+        data.seed = @"677745";
+        data.email = @"random@gmail.com";
+        data.gender = @"male";
+        data.name = @"test user";
+        data.age = 29;
+        data.dob = @"Today";
+        
+        [[UserDataManager sharedInstance] cacheUser:data withCompletionBlock:^(BOOL isSuccess) {
+             XCTAssertTrue(isSuccess);
+            [[UserDataManager sharedInstance] getUserListFromCacheWithCompletionBlock:^(NSArray<UserData *> * _Nullable list) {
+                XCTAssertNotNil(list);
+                [onCompleteExpectation fulfill];
+            }];
+        }];
+        
+        NSLog(@"Current user’s home directory is %@", NSHomeDirectory());
+        
+    });
+    
+    [self waitForExpectations:[NSArray arrayWithObjects:onCompleteExpectation, nil] timeout:100];
+}
+
+
+
+- (void)test_004_deleteuser {
+    __block XCTestExpectation * onCompleteExpectation = [self expectationWithDescription:@"onComplete"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        UserData *data = [[UserData alloc]init];
+        data.seed = @"677745";
+        data.email = @"random@gmail.com";
+        data.gender = @"male";
+        data.name = @"test user";
+        data.age = 29;
+        data.dob = @"Today";
+        
+        [[UserDataManager sharedInstance] cacheUser:data withCompletionBlock:^(BOOL isSuccess) {
+            XCTAssertTrue(isSuccess);
+            [[UserDataManager sharedInstance] deleteUser:data withCompletionBlock:^(BOOL isSuccess) {
+                XCTAssertTrue(isSuccess);
+                [onCompleteExpectation fulfill];
+            }];
+        }];
+    });
+    [self waitForExpectations:[NSArray arrayWithObjects:onCompleteExpectation, nil] timeout:100];
+}
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
 
 @end

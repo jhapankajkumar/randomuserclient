@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TW4-8d-RtC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TW4-8d-RtC">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wha-37-95M">
-                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" rowHeight="123" id="jH7-xe-b6V" customClass="UserTableViewCell">
@@ -87,7 +88,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Wha-37-95M" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="SKF-RZ-Wig"/>
-                            <constraint firstItem="Wha-37-95M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="U5O-Tm-2IX"/>
+                            <constraint firstItem="Wha-37-95M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="U5O-Tm-2IX"/>
                             <constraint firstItem="Wha-37-95M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jyM-50-hRC"/>
                             <constraint firstItem="Wha-37-95M" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tT0-8g-LBe"/>
                         </constraints>
@@ -313,10 +314,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBq-dE-ruS">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBq-dE-ruS">
                                                 <rect key="frame" x="75" y="0.0" width="195" height="43"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="195" id="J1o-i3-yPt"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="J1o-i3-yPt"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="z6k-gX-7L0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -335,7 +337,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.66514261903364669" green="0.89461229538566256" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.7843137255" green="0.90196078430000004" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="OLy-zH-oyU" firstAttribute="top" secondItem="r2w-Kj-KDD" secondAttribute="top" constant="8" id="0wQ-2l-Mtz"/>
                                     <constraint firstAttribute="trailing" secondItem="H4U-Pv-aNd" secondAttribute="trailing" id="5zg-vy-Mnj"/>
@@ -367,12 +369,18 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3X-O3-dyh">
-                                <rect key="frame" x="141.5" y="467" width="37" height="30"/>
+                                <rect key="frame" x="110" y="467" width="100" height="30"/>
+                                <color key="backgroundColor" red="0.7843137255" green="0.90196078430000004" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="GI4-eG-ArT"/>
-                                    <constraint firstAttribute="width" constant="37" id="h8T-u3-PbQ"/>
+                                    <constraint firstAttribute="width" constant="100" id="h8T-u3-PbQ"/>
                                 </constraints>
                                 <state key="normal" title="Store"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="storeUserToCache:" destination="6F4-7F-03L" eventType="touchUpInside" id="056-A6-Tfi"/>
                                 </connections>
@@ -488,6 +496,11 @@
                                         <state key="normal" title="Query">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="queryUsers:" destination="8bP-Gd-A0r" eventType="touchUpInside" id="MrF-qX-zAb"/>
                                         </connections>
@@ -617,6 +630,6 @@
         <image name="menu-icon.png" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XuO-wQ-OnC"/>
+        <segue reference="FwW-rJ-sTc"/>
     </inferredMetricsTieBreakers>
 </document>

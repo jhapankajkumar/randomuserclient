@@ -12,4 +12,5 @@
 @interface UserDetailViewController : UIViewController
 
 -(void)setUserDetail:(UserData*)userData;
+@property (nonatomic) BOOL isStoredUserDetail;
 @end

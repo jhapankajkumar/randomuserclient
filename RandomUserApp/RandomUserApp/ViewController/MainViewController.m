@@ -11,6 +11,7 @@
 #import <RandomUser/RandomUser.h>
 #import "ViewController.h"
 #import "UserDetailViewController.h"
+#import <LocalAuthentication/LocalAuthentication.h>
 
 @interface MainViewController () <UITextFieldDelegate> {
     NSArray *userList;
@@ -35,6 +36,45 @@
     //self.genderTextField.inputView = self.pickerView;
     // Do any additional setup after loading the view.
     [self initialSetup];
+    
+    [self authenticateUserViaTouchId];
+}
+
+
+-(void)authenticateUserViaTouchId {
+    LAContext *myContext = [[LAContext alloc] init];
+    NSError *authError = nil;
+    NSString *myLocalizedReasonString = @"Authenticate using your finger";
+    if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
+        [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                  localizedReason:myLocalizedReasonString
+                            reply:^(BOOL success, NSError *error) {
+                                if (success) {
+                                    NSLog(@"User is authenticated successfully");
+                                } else {
+                                    switch (error.code) {
+                                        case LAErrorAuthenticationFailed:
+                                            NSLog(@"Authentication Failed");
+                                            break;
+                                            
+                                        case LAErrorUserCancel:
+                                            NSLog(@"User pressed Cancel button");
+                                            break;
+                                            
+                                        case LAErrorUserFallback:
+                                            NSLog(@"User pressed \"Enter Password\"");
+                                            break;
+                                            
+                                        default:
+                                            NSLog(@"Touch ID is not configured");
+                                            break;
+                                    }
+                                    NSLog(@"Authentication Fails");
+                                }
+                            }];
+    } else {
+        NSLog(@"Can not evaluate Touch ID");
+    }
 }
 
 -(void)initialSetup {
@@ -102,22 +142,38 @@
     self.pickerView.hidden = true;
 }
 - (IBAction)queryUsers:(id)sender {
+    
+    [self showLoading];
+    [self getRandomUserList];
+    
+}
+
+-(void)showLoading {
     self.loadingView.hidden = false;
     self.activityIndicatorView.hidden = false;
     [self.activityIndicatorView startAnimating];
     [self.view endEditing:true];
-    [[UserDataManager sharedInstance] getUserListWithSeed:self.userId.text gender:self.genderTextField.text resultCount:[self.multipleUserCount.text integerValue] withCompletionBlock:^(NSArray<UserData *> * _Nullable users, NSError * _Nullable error) {
-        [self.activityIndicatorView stopAnimating];
-        self.loadingView.hidden = true;
-        
+}
+
+-(void)hideLoading {
+    [self.activityIndicatorView stopAnimating];
+    self.loadingView.hidden = true;
+}
+
+-(void)getRandomUserList{
+    [[UserDataManager sharedInstance] getUserListWithSeed:self.userId.text gender:self.genderTextField.text resultCount:[self.multipleUserCount.text integerValue] withCompletionBlock:^(NSArray<UserData *> * _Nullable users, RandomUserError * _Nullable error) {
+        [self hideLoading];
         if (error == nil) {
             self->userList = users;
             if (users.count > 1) {
-                [self performSegueWithIdentifier:@"toUserListVC" sender:sender];
+                [self performSegueWithIdentifier:@"toUserListVC" sender:nil];
             }
             else {
-                [self performSegueWithIdentifier:@"fromQueryToUserDetail" sender:sender];
+                [self performSegueWithIdentifier:@"fromQueryToUserDetail" sender:nil];
             }
+        }
+        else {
+            [self showAlertWithMessage:error];
         }
     }];
 }
@@ -126,13 +182,29 @@
     if ([segue.identifier isEqualToString:@"toUserListVC"]) {
         ViewController *viewController = (ViewController*) segue.destinationViewController;
         viewController.userList = userList;
+        viewController.title = @"Random Users";
     }
     else if ([segue.identifier isEqualToString:@"fromQueryToUserDetail"]){
         UserDetailViewController *detailVc = (UserDetailViewController *)segue.destinationViewController;
         [detailVc setUserDetail:[userList objectAtIndex:0]];
+        detailVc.title = @"User Detail";
     }
 }
 
+-(void)showAlertWithMessage:(RandomUserError *)error  {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:error.errorMessage preferredStyle:UIAlertControllerStyleAlert];
+    if (error.errorCode == CONNECTION_TIMEOUT) {
+        UIAlertAction *retry = [UIAlertAction actionWithTitle:@"Retry" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+                             {
+                                 [self showLoading];
+                                 [self getRandomUserList];
+                             }];
+        [alert addAction:retry];
+    }
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 
 @end

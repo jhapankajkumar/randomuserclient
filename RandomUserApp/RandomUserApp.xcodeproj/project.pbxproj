@@ -19,6 +19,7 @@
 		EB051899219BE4F300F6B398 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB051897219BE4F300F6B398 /* LaunchScreen.storyboard */; };
 		EB05189C219BE4F300F6B398 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB05189B219BE4F300F6B398 /* main.m */; };
 		EBAAF282219D3101002EFF7B /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF281219D3101002EFF7B /* UserDetailViewController.m */; };
+		EBAAF2A1219E7198002EFF7B /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAAF2A0219E7198002EFF7B /* LocalAuthentication.framework */; };
 		EBF9E704219D21B700F8B78F /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF9E703219D21B700F8B78F /* UserTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		EB05189B219BE4F300F6B398 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EBAAF280219D3101002EFF7B /* UserDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
 		EBAAF281219D3101002EFF7B /* UserDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
+		EBAAF2A0219E7198002EFF7B /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		EBF9E702219D21B700F8B78F /* UserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
 		EBF9E703219D21B700F8B78F /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBAAF2A1219E7198002EFF7B /* LocalAuthentication.framework in Frameworks */,
 				565DD94C219C8BBC0024B7A4 /* RandomUser.framework in Frameworks */,
 				8C9B2831DB611F47F3163E6A /* libPods-RandomUserApp.a in Frameworks */,
 			);
@@ -77,6 +80,7 @@
 		565DD949219C8BB00024B7A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EBAAF2A0219E7198002EFF7B /* LocalAuthentication.framework */,
 				565DD94A219C8BB10024B7A4 /* RandomUser.framework */,
 				52D94EC53B74D72134B0E039 /* libPods-RandomUserApp.a */,
 			);
@@ -223,15 +227,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-RandomUserApp-checkManifestLockResult.txt",
 			);
@@ -395,16 +395,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NUNG7PPNWH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RandomUserApp",
 				);
 				INFOPLIST_FILE = RandomUserApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com..RandomUserApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hcesdk.wallet.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -416,16 +418,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NUNG7PPNWH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RandomUserApp",
 				);
 				INFOPLIST_FILE = RandomUserApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com..RandomUserApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hcesdk.wallet.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

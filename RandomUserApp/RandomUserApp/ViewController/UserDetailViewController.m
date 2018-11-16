@@ -43,22 +43,58 @@
     self.genderLbl.text = [self.user.gender capitalizedString];
     self.ageLbl.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.user.age];
     self.userId.text = self.user.seed;
-    self.dobLblb.text = self.user.dob;
+    self.dobLblb.text = [self getDateOfBirth:self.user.dob];
+    if (self.isStoredUserDetail) {
+        [self.storeButton setTitle:@"Delete" forState:UIControlStateNormal];
+    }
 }
-    
+
+-(NSString *)getDateOfBirth:(NSString *)dob {
+    //2016-04-22 16:30:36 +0000
+    NSDateFormatter * formatter =  [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    NSDate * convrtedDate = [formatter dateFromString:dob];
+    [formatter setDateFormat:@"dd MMM yyyy"];
+    NSString *dateString = [formatter stringFromDate:convrtedDate];
+    return dateString;
+}
 -(void)setUserDetail:(UserData*)userData {
     self.user = userData;
 }
 
 - (IBAction)storeUserToCache:(id)sender {
     self.storeButton.enabled = false;
-    [[UserDataManager sharedInstance] cacheUser:self.user withCompletionBlock:^(BOOL isSuccess) {
-        NSLog(@"%d",isSuccess);
-        if (!isSuccess) {
-            self.storeButton.enabled = true;
-        }
-    }];
+    //Delete user
+    if (self.isStoredUserDetail) {
+        [[UserDataManager sharedInstance] deleteUser:self.user withCompletionBlock:^(BOOL isSuccess, RandomUserError * _Nullable error) {
+            if (!isSuccess) {
+                self.storeButton.enabled = true;
+                [self showAlertWithMessage:error.errorMessage];
+            }
+            else{
+                [self.navigationController popViewControllerAnimated:true];
+            }
+        }];
+    }
+    //Save User
+    else{
+        [[UserDataManager sharedInstance] cacheUser:self.user withCompletionBlock:^(BOOL isSuccess, RandomUserError * _Nullable error)  {
+            NSLog(@"%d",isSuccess);
+            if (!isSuccess) {
+                self.storeButton.enabled = true;
+                [self showAlertWithMessage:error.errorMessage];
+            }
+            
+        }];
+    }
+    
 }
 
+-(void)showAlertWithMessage:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 @end

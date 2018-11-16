@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
-
+#import "RandomUserErroMessages.h"
 
 #define kHexKey @"00831B24385C44BB04F474BDB8BB3E2C"
 
@@ -38,12 +38,16 @@
     static id sharedInstance;
     dispatch_once(&once, ^{
         sharedInstance = [[self alloc] init];
+        NSLog(@"Current user’s home directory is %@", NSHomeDirectory());
     });
     return sharedInstance;
 }
 
 #pragma mark - Public API
--(void)getUserListWithSeed:(NSString * _Nullable)seed gender:(NSString* _Nullable)gender resultCount:(NSUInteger)resultCount withCompletionBlock:(void(^)(NSArray <UserData *>*users, NSError *error))completionBlock {
+-(void)getUserListWithSeed:(NSString * _Nullable)seed
+                    gender:(NSString* _Nullable)gender
+               resultCount:(NSUInteger)resultCount
+       withCompletionBlock:(void(^)(NSArray <UserData * > * _Nullable users , RandomUserError * _Nullable error ))completionBlock {
 
     NSURLSession *session = [NSURLSession sharedSession];
     NSString *path = @"";
@@ -96,8 +100,22 @@
             }
         }
         else {
+            
+            RandomUserError *rmError = [[RandomUserError alloc] init];
+            if (error.code == NSURLErrorTimedOut || error.code ==  NSURLErrorNetworkConnectionLost) {
+                rmError.errorCode = CONNECTION_TIMEOUT;
+                rmError.errorMessage = CONNECTION_TIMEOUT_MESSAGE;
+            }
+            else if (error.code == NSURLErrorNotConnectedToInternet) {
+                rmError.errorCode = NO_INTERNET;
+                rmError.errorMessage = NO_INTERNET_AVAILABLE_MESSAGE;
+            }
+            else{
+                rmError.errorCode = INTERNAL_SERVER_ERROR;
+                rmError.errorMessage = [error localizedDescription];
+            }
             dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock(nil,error);
+                completionBlock(nil,rmError);
             });
         }
     } ];
@@ -106,32 +124,58 @@
 
 }
 
-- (void)getUserListFromCacheWithCompletionBlock:(void(^)(NSArray<UserData*> * _Nullable list))completionBlock {
+- (void)getUserListFromCacheWithCompletionBlock:(void(^)(NSArray<UserData*> * _Nullable list, RandomUserError * _Nullable error))completionBlock {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSArray *users = [self getUsersFromCache];
         dispatch_async(dispatch_get_main_queue(), ^{
-            completionBlock(users);
+            if (users.count ==0) {
+                RandomUserError *rmError = [[RandomUserError alloc] init];
+                rmError.errorCode = NO_USER_DATA;
+                rmError.errorMessage = NO_USER_DATA_MESSAGE;
+                 completionBlock(nil,rmError);
+            }
+            else {
+                completionBlock(users,nil);
+            }
+           
         });
     });
 }
 
 - (void)cacheUser:(UserData * _Nonnull)userData
-withCompletionBlock:(void(^)(BOOL isSuccess))completionBlock {
+withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BOOL result = [self saveUserData:userData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            completionBlock(result);
+            if (!result) {
+                RandomUserError *rmError = [[RandomUserError alloc] init];
+                rmError.errorCode = STORE_OPERATION_FAILED;
+                rmError.errorMessage = STORE_OPERATION_FAILED_MESSAGE;
+                completionBlock(nil,rmError);
+            }
+            else{
+                completionBlock(result,nil);
+            }
+            
         });
     });
 }
 
 
 - (void)deleteUser:(UserData * _Nonnull)userData
-withCompletionBlock:(void(^)(BOOL isSuccess))completionBlock {
+withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))completionBlock {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BOOL result = [self deleteUserData:userData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            completionBlock(result);
+            if (!result) {
+                RandomUserError *rmError = [[RandomUserError alloc] init];
+                rmError.errorCode = DELETE_OPERATION_FAILED;
+                rmError.errorMessage = DELETE_OPERATION_FAILED_MESSAGE;
+                completionBlock(nil,rmError);
+            }
+            else{
+                completionBlock(result,nil);
+            }
         });
     });
 }
@@ -200,8 +244,8 @@ withCompletionBlock:(void(^)(BOOL isSuccess))completionBlock {
     NSManagedObject*userTable = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
     [userTable setValue:userData.name forKey:@"name"];
     [userTable setValue:userData.gender forKey:@"gender"];
-    NSString *enccryptedMail = [self getEncryptedText:userData.email];
-    [userTable setValue:enccryptedMail forKey:@"email"];
+    NSString *encryptedMail = [self getEncryptedText:userData.email];
+    [userTable setValue:encryptedMail forKey:@"email"];
     [userTable setValue:[NSNumber numberWithUnsignedInteger:userData.age] forKey:@"age"];
     [userTable setValue:userData.dob forKey:@"dob"];
     [userTable setValue:userData.seed forKey:@"seed"];
@@ -277,7 +321,7 @@ withCompletionBlock:(void(^)(BOOL isSuccess))completionBlock {
     NSManagedObjectContext *context = self.persistentContainer.viewContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email = %@",userData.email];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@",userData.name];
     [fetchRequest setEntity:entity];
     [fetchRequest setPredicate:predicate];
     

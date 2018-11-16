@@ -6,7 +6,15 @@
 	<dict>
 		<key>Headers/RandomUser.h</key>
 		<data>
-		RX1vmX+ApcZuJMwhpkovFeLBrGc=
+		NpSctCHe3NR14I9UzZfHXvs7IWc=
+		</data>
+		<key>Headers/RandomUserError.h</key>
+		<data>
+		0e6PZicef7M0Qua6CFBaQB+OsZo=
+		</data>
+		<key>Headers/RandomUserErrorCodes.h</key>
+		<data>
+		Tq8UnOfNjDfeU4+AGfnWWZC8Yng=
 		</data>
 		<key>Headers/UserData.h</key>
 		<data>
@@ -14,11 +22,11 @@
 		</data>
 		<key>Headers/UserDataManager.h</key>
 		<data>
-		qgZHyn5yYm6/R2X8t2uamSBIZXk=
+		FLzy/ID63iHYuv1xgaGqoER4WwI=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		sVX6i0mBbSUdYBA1xi+2h497Ecc=
+		sj281Ntw1fnDR1HMG1x7XIHdszI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -39,7 +47,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ayoq7sDsbr83oOT2tjsLhOq8nGq2c0+OXTslIWxFtss=
+			TXRDkH4XVucWjDQmXyoz6CKsiYYh1z8v33YaQtXShA4=
+			</data>
+		</dict>
+		<key>Headers/RandomUserError.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			YTpJbaRqLSoQjWkIKbzj0Rtb98Jva/ekLAUcXke2zco=
+			</data>
+		</dict>
+		<key>Headers/RandomUserErrorCodes.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			v4tvcX0eOKF7Dh94rVKlAmFQa4VZQeYyTEGB26eLUEU=
 			</data>
 		</dict>
 		<key>Headers/UserData.h</key>
@@ -53,7 +75,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pIQOSTpUYVN017nKpCBx2x57Emr4Saq8pvHqQQQK3RQ=
+			jESezZJ56rPoYbb98bETtf+c6RxLmgiQou0xyax53FE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

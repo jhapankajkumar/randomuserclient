@@ -8,7 +8,13 @@
 
 #import "LeftViewController.h"
 #import "MFSideMenu.h"
-@interface LeftViewController ()
+#import "ViewController.h"
+#import <RandomUser/RandomUser.h>
+
+
+@interface LeftViewController () {
+    NSIndexPath *selectedIndexPath;
+}
 @property (strong, nonatomic) NSArray *titlesArray;
 @end
 
@@ -44,7 +50,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
-    
+    selectedIndexPath = indexPath;
+    if (indexPath.row == 1) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        ViewController *listViewController = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+        listViewController.isStoredUserList =  true;
+        UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+        [navigationController pushViewController:listViewController animated:true];
+        [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+        listViewController.title = @"Stored Users";
+    }
 }
+
 
 @end

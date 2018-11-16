@@ -25,6 +25,10 @@
 		EBAAF29A219D67FA002EFF7B /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF28F219D67FA002EFF7B /* RNDecryptor.m */; };
 		EBAAF29C219D67FA002EFF7B /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF290219D67FA002EFF7B /* RNEncryptor.m */; };
 		EBAAF29E219D67FA002EFF7B /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF291219D67FA002EFF7B /* RNCryptorEngine.m */; };
+		EBAAF2A5219E76F3002EFF7B /* RandomUserError.h in Headers */ = {isa = PBXBuildFile; fileRef = EBAAF2A3219E76F3002EFF7B /* RandomUserError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EBAAF2A6219E76F3002EFF7B /* RandomUserError.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF2A4219E76F3002EFF7B /* RandomUserError.m */; };
+		EBAAF2A7219E76F3002EFF7B /* RandomUserError.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF2A4219E76F3002EFF7B /* RandomUserError.m */; };
+		EBAAF2A9219E7CE3002EFF7B /* RandomUserErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = EBAAF2A2219E7227002EFF7B /* RandomUserErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		EBAAF28F219D67FA002EFF7B /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
 		EBAAF290219D67FA002EFF7B /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 		EBAAF291219D67FA002EFF7B /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
+		EBAAF2A2219E7227002EFF7B /* RandomUserErrorCodes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomUserErrorCodes.h; sourceTree = "<group>"; };
+		EBAAF2A3219E76F3002EFF7B /* RandomUserError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomUserError.h; sourceTree = "<group>"; };
+		EBAAF2A4219E76F3002EFF7B /* RandomUserError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RandomUserError.m; sourceTree = "<group>"; };
+		EBAAF2A8219E7A4C002EFF7B /* RandomUserErroMessages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomUserErroMessages.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +115,12 @@
 				EB464B52219BD4C500CC6F33 /* UserDataManager.m */,
 				EB0518AF219C107F00F6B398 /* UserData.h */,
 				EB0518B0219C107F00F6B398 /* UserData.m */,
+				EBAAF2A2219E7227002EFF7B /* RandomUserErrorCodes.h */,
 				565DD920219C81670024B7A4 /* UserDataBase.xcdatamodeld */,
 				EB464B3B219BD33100CC6F33 /* Info.plist */,
+				EBAAF2A3219E76F3002EFF7B /* RandomUserError.h */,
+				EBAAF2A4219E76F3002EFF7B /* RandomUserError.m */,
+				EBAAF2A8219E7A4C002EFF7B /* RandomUserErroMessages.h */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
@@ -155,6 +167,8 @@
 				EB464B48219BD33100CC6F33 /* RandomUser.h in Headers */,
 				EB464B53219BD4C500CC6F33 /* UserDataManager.h in Headers */,
 				EBAAF292219D67FA002EFF7B /* RNDecryptor.h in Headers */,
+				EBAAF2A5219E76F3002EFF7B /* RandomUserError.h in Headers */,
+				EBAAF2A9219E7CE3002EFF7B /* RandomUserErrorCodes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +275,7 @@
 				EB464B54219BD4C500CC6F33 /* UserDataManager.m in Sources */,
 				EBAAF29E219D67FA002EFF7B /* RNCryptorEngine.m in Sources */,
 				EBAAF29A219D67FA002EFF7B /* RNDecryptor.m in Sources */,
+				EBAAF2A6219E76F3002EFF7B /* RandomUserError.m in Sources */,
 				EBAAF293219D67FA002EFF7B /* RNCryptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBAAF2A7219E76F3002EFF7B /* RandomUserError.m in Sources */,
 				EB464B46219BD33100CC6F33 /* RandomUserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

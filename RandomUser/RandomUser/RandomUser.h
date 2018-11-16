@@ -18,3 +18,5 @@ FOUNDATION_EXPORT const unsigned char RandomUserVersionString[];
 
 #import <RandomUser/UserDataManager.h>
 #import <RandomUser/UserData.h>
+#import "RandomUserErrorCodes.h"
+#import "RandomUserError.h"

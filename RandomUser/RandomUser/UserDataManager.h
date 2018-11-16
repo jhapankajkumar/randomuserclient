@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "UserData.h"
+#import "RandomUserError.h"
+
 
 
 @interface UserDataManager : NSObject
@@ -30,7 +32,7 @@
 -(void)getUserListWithSeed:(NSString * _Nullable)seed
                     gender:(NSString* _Nullable)gender
                resultCount:(NSUInteger)resultCount
-       withCompletionBlock:(void(^)(NSArray <UserData * > * _Nullable users , NSError * _Nullable error ))completionBlock;
+       withCompletionBlock:(void(^)(NSArray <UserData * > * _Nullable users , RandomUserError * _Nullable error ))completionBlock;
 
 
 /*!
@@ -39,7 +41,7 @@
  * @param completionBlock call back  with user list or error.
  */
 - (void)cacheUser:(UserData * _Nonnull)userData
-withCompletionBlock:(void(^)(BOOL isSuccess))completionBlock;
+withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock;
 
 
 /*!
@@ -48,12 +50,12 @@ withCompletionBlock:(void(^)(BOOL isSuccess))completionBlock;
  * @param completionBlock call back  with user list or error.
  */
 - (void)deleteUser:(UserData * _Nonnull)userData
-withCompletionBlock:(void(^)(BOOL isSuccess))completionBlock;
+withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))completionBlock;
 
 /*!
  * Retrieve the user to cache
  * @param completionBlock call back user list.
  */
-- (void)getUserListFromCacheWithCompletionBlock:(void(^)(NSArray<UserData*> * _Nullable list))completionBlock;
+- (void)getUserListFromCacheWithCompletionBlock:(void(^)(NSArray<UserData*> * _Nullable list, RandomUserError * _Nullable error))completionBlock;
 
 @end

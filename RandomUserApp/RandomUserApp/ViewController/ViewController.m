@@ -36,7 +36,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    if (self.isStoredUserList) {
+        [self getStoredUserList];
+    }
+}
 
+- (void)getStoredUserList {
+    [[UserDataManager sharedInstance] getUserListFromCacheWithCompletionBlock:^(NSArray<UserData *> * _Nullable list, RandomUserError * _Nullable error) {
+        self.userList = list;
+        [self.listTableView reloadData];
+    }];
+}
 #pragma -mark TableView Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -66,6 +77,10 @@
      if ([segue.identifier isEqualToString:@"fromListToUserDetail"]){
         UserDetailViewController *detailVc = (UserDetailViewController *)segue.destinationViewController;
         [detailVc setUserDetail:[self.userList objectAtIndex:selectedIndexPath.row]];
+         detailVc.title = @"User Detail";
+         if (self.isStoredUserList) {
+             detailVc.isStoredUserDetail = true;
+         }
     }
 }
 

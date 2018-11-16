@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 
 @property (nonatomic,strong) NSArray *userList;
+@property (nonatomic) BOOL isStoredUserList;
 @end
 
