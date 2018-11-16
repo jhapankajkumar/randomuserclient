@@ -126,38 +126,92 @@
 
 - (void)getUserListFromCacheWithCompletionBlock:(void(^)(NSArray<UserData*> * _Nullable list, RandomUserError * _Nullable error))completionBlock {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *users = [self getUsersFromCache];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (users.count ==0) {
-                RandomUserError *rmError = [[RandomUserError alloc] init];
-                rmError.errorCode = NO_USER_DATA;
-                rmError.errorMessage = NO_USER_DATA_MESSAGE;
-                 completionBlock(nil,rmError);
-            }
-            else {
-                completionBlock(users,nil);
-            }
-           
-        });
+        
+        @try {
+            NSArray *users = [self getUsersFromCache];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (users.count ==0) {
+                    RandomUserError *rmError = [[RandomUserError alloc] init];
+                    rmError.errorCode = NO_USER_DATA;
+                    rmError.errorMessage = NO_USER_DATA_MESSAGE;
+                    completionBlock(nil,rmError);
+                }
+                else {
+                    completionBlock(users,nil);
+                }
+                
+            });
+        } @catch (NSException *exception) {
+            
+            NSLog(@"getUserListFromCacheWithCompletionBlock: Found Expeption: %@ ",exception.description);
+            
+            RandomUserError *rmError = [[RandomUserError alloc] init];
+            rmError.errorCode = NO_USER_DATA;
+            rmError.errorMessage = exception.description;
+            completionBlock(nil,rmError);
+        }
+        
+        
     });
 }
 
 - (void)cacheUser:(UserData * _Nonnull)userData
 withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BOOL result = [self saveUserData:userData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!result) {
+        
+        @try {
+            BOOL result = [self saveUserData:userData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!result) {
+                    RandomUserError *rmError = [[RandomUserError alloc] init];
+                    rmError.errorCode = STORE_OPERATION_FAILED;
+                    rmError.errorMessage = STORE_OPERATION_FAILED_MESSAGE;
+                    completionBlock(nil,rmError);
+                }
+                else{
+                    completionBlock(result,nil);
+                }
+                
+            });
+        } @catch (NSException *exception) {
+            NSLog(@"cacheUser: Found Expeption: %@ ",exception.description);
+            RandomUserError *rmError = [[RandomUserError alloc] init];
+            rmError.errorCode = STORE_OPERATION_FAILED;
+            rmError.errorMessage = exception.description;
+            completionBlock(nil,rmError);
+        }
+        
+    });
+}
+
+
+- (void)cacheUserList:(NSArray<UserData *> *_Nonnull)userDataList
+  withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        @try {
+            BOOL result = [self saveUserDataList:userDataList];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!result) {
+                    RandomUserError *rmError = [[RandomUserError alloc] init];
+                    rmError.errorCode = STORE_OPERATION_FAILED;
+                    rmError.errorMessage = STORE_OPERATION_FAILED_MESSAGE;
+                    completionBlock(nil,rmError);
+                }
+                else{
+                    completionBlock(result,nil);
+                }
+                
+            });
+        } @catch (NSException *exception) {
+            NSLog(@"cacheUserList: Found Expeption: %@ ",exception.description);
                 RandomUserError *rmError = [[RandomUserError alloc] init];
                 rmError.errorCode = STORE_OPERATION_FAILED;
-                rmError.errorMessage = STORE_OPERATION_FAILED_MESSAGE;
+                rmError.errorMessage = exception.description;
                 completionBlock(nil,rmError);
-            }
-            else{
-                completionBlock(result,nil);
-            }
-            
-        });
+        }
+        
     });
 }
 
@@ -165,20 +219,59 @@ withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error )
 - (void)deleteUser:(UserData * _Nonnull)userData
 withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))completionBlock {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BOOL result = [self deleteUserData:userData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!result) {
-                RandomUserError *rmError = [[RandomUserError alloc] init];
-                rmError.errorCode = DELETE_OPERATION_FAILED;
-                rmError.errorMessage = DELETE_OPERATION_FAILED_MESSAGE;
-                completionBlock(nil,rmError);
-            }
-            else{
-                completionBlock(result,nil);
-            }
-        });
+        @try {
+            BOOL result = [self deleteUserData:userData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!result) {
+                    RandomUserError *rmError = [[RandomUserError alloc] init];
+                    rmError.errorCode = DELETE_OPERATION_FAILED;
+                    rmError.errorMessage = DELETE_OPERATION_FAILED_MESSAGE;
+                    completionBlock(nil,rmError);
+                }
+                else{
+                    completionBlock(result,nil);
+                }
+            });
+        } @catch (NSException *exception) {
+            NSLog(@"deleteUser: Found Expeption: %@ ",exception.description);
+            RandomUserError *rmError = [[RandomUserError alloc] init];
+            rmError.errorCode = DELETE_OPERATION_FAILED;
+            rmError.errorMessage = exception.description;
+            completionBlock(nil,rmError);
+        }
+        
     });
 }
+
+- (void)deleteUserList:(NSArray<UserData *> *_Nonnull)userDataList
+   withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        @try {
+            BOOL result = [self deleteUserDataList:userDataList];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!result) {
+                    RandomUserError *rmError = [[RandomUserError alloc] init];
+                    rmError.errorCode = DELETE_OPERATION_FAILED;
+                    rmError.errorMessage = DELETE_OPERATION_FAILED_MESSAGE;
+                    completionBlock(nil,rmError);
+                }
+                else{
+                    completionBlock(result,nil);
+                }
+            });
+        } @catch (NSException *exception) {
+            NSLog(@"deleteUserList: Found Expeption: %@ ",exception.description);
+            RandomUserError *rmError = [[RandomUserError alloc] init];
+            rmError.errorCode = DELETE_OPERATION_FAILED;
+            rmError.errorMessage = exception.description;
+            completionBlock(nil,rmError);
+        }
+        
+    });
+}
+
 
 
 #pragma mark -Helper methods
@@ -240,17 +333,107 @@ withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))
 
 
 -(BOOL)saveUserData:(UserData*)userData {
-    NSManagedObjectContext *context = self.persistentContainer.viewContext;
-    NSManagedObject*userTable = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
-    [userTable setValue:userData.name forKey:@"name"];
-    [userTable setValue:userData.gender forKey:@"gender"];
-    NSString *encryptedMail = [self getEncryptedText:userData.email];
-    [userTable setValue:encryptedMail forKey:@"email"];
-    [userTable setValue:[NSNumber numberWithUnsignedInteger:userData.age] forKey:@"age"];
-    [userTable setValue:userData.dob forKey:@"dob"];
-    [userTable setValue:userData.seed forKey:@"seed"];
+    if (![self isUserCached:userData]) {
+        NSManagedObjectContext *context = self.persistentContainer.viewContext;
+        NSManagedObject*userTable = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+        [userTable setValue:userData.name forKey:@"name"];
+        [userTable setValue:userData.gender forKey:@"gender"];
+        NSString *encryptedMail = [self getEncryptedText:userData.email];
+        [userTable setValue:encryptedMail forKey:@"email"];
+        [userTable setValue:[NSNumber numberWithUnsignedInteger:userData.age] forKey:@"age"];
+        [userTable setValue:userData.dob forKey:@"dob"];
+        [userTable setValue:userData.seed forKey:@"seed"];
+        NSLog(@"saveUserData");
+        return [self saveContext];
+    }
+    else{
+        
+        NSLog(@"user exits %@",userData.name);
+        return true;
+    }
     
+}
+
+
+-(BOOL)saveUserDataList:(NSArray<UserData*>*)userDataList {
+    NSManagedObjectContext *context = self.persistentContainer.viewContext;
+    
+    for (UserData *userData in userDataList) {
+        if (![self isUserCached:userData]) {
+            NSManagedObject*userTable = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+            [userTable setValue:userData.name forKey:@"name"];
+            [userTable setValue:userData.gender forKey:@"gender"];
+            NSString *encryptedMail = [self getEncryptedText:userData.email];
+            [userTable setValue:encryptedMail forKey:@"email"];
+            [userTable setValue:[NSNumber numberWithUnsignedInteger:userData.age] forKey:@"age"];
+            [userTable setValue:userData.dob forKey:@"dob"];
+            [userTable setValue:userData.seed forKey:@"seed"];
+            
+            [self saveContext];
+        }
+        else{
+            NSLog(@"user exits %@",userData.name);
+        }
+    }
+
     NSLog(@"saveUserData");
+    return [self saveContext];
+}
+
+-(BOOL)isUserCached:(UserData *)userData {
+    
+    NSManagedObjectContext *context = self.persistentContainer.viewContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@",userData.name];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+    return items.count > 0 ? true:false;
+}
+
+-(BOOL)deleteUserData:(UserData *)userData {
+    NSManagedObjectContext *context = self.persistentContainer.viewContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@",userData.name];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+    
+    for (NSManagedObject *managedObject in items)
+    {
+        [context deleteObject:managedObject];
+    }
+    
+    return [self saveContext];
+}
+
+-(BOOL)deleteUserDataList:(NSArray<UserData *> *)userDataList {
+    
+    NSManagedObjectContext *context = self.persistentContainer.viewContext;
+    for (UserData *userData in userDataList) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@",userData.name];
+        [fetchRequest setEntity:entity];
+        [fetchRequest setPredicate:predicate];
+        
+        NSError *error;
+        NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+        
+        for (NSManagedObject *managedObject in items)
+        {
+            [context deleteObject:managedObject];
+        }
+        
+        [self saveContext];
+    }
+    NSLog(@"Delete UserData");
     return [self saveContext];
 }
 
@@ -317,24 +500,7 @@ withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))
 }
 
 
--(BOOL)deleteUserData:(UserData *)userData {
-    NSManagedObjectContext *context = self.persistentContainer.viewContext;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@",userData.name];
-    [fetchRequest setEntity:entity];
-    [fetchRequest setPredicate:predicate];
-    
-    NSError *error;
-    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
-    
-    for (NSManagedObject *managedObject in items)
-    {
-        [context deleteObject:managedObject];
-    }
-    
-    return [self saveContext];
-}
+
 
 #pragma mark - Core Data stack
 

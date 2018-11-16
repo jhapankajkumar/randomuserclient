@@ -38,19 +38,37 @@
 /*!
  * Store the user to cache
  * @param userData User data to be store in cache
- * @param completionBlock call back  with user list or error.
+ * @param completionBlock call back  with success/failure or error.
  */
 - (void)cacheUser:(UserData * _Nonnull)userData
 withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock;
 
 
 /*!
+ * Store the multiple user to cache
+ * @param userData User data to be store in cache
+ * @param completionBlock call back  with success/failure or error.
+ */
+- (void)cacheUserList:(NSArray<UserData *> *_Nonnull)userData
+withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock;
+
+
+/*!
  * Delete the user from cache
  * @param userData User data to be deleted from cache
- * @param completionBlock call back  with user list or error.
+ * @param completionBlock call back  with success/failure or error.
  */
 - (void)deleteUser:(UserData * _Nonnull)userData
 withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))completionBlock;
+
+
+/*!
+ * Delete the multiple user to cache
+ * @param userDataList  list of User data to be deleted from cache
+ * @param completionBlock call back  with success/failure or error.
+ */
+- (void)deleteUserList:(NSArray<UserData *> *_Nonnull)userDataList
+  withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock;
 
 /*!
  * Retrieve the user to cache

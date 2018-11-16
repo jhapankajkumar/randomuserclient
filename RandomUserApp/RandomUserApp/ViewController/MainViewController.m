@@ -54,6 +54,7 @@
                                 } else {
                                     switch (error.code) {
                                         case LAErrorAuthenticationFailed:
+                                            [self showAuthenticationAlertWithMessage:@"Authentication Failed, please try again"];
                                             NSLog(@"Authentication Failed");
                                             break;
                                             
@@ -80,7 +81,7 @@
 -(void)initialSetup {
     self.genderList = @[@"Male",
                         @"Female"];
-    
+    self.title = @"Query User";
     self.pickerView.hidden = true;
     self.loadingView.hidden = true;
 }
@@ -189,6 +190,18 @@
         [detailVc setUserDetail:[userList objectAtIndex:0]];
         detailVc.title = @"User Detail";
     }
+}
+
+-(void)showAuthenticationAlertWithMessage:(NSString *)message  {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *retry = [UIAlertAction actionWithTitle:@"Retry" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+                            {
+                                [self authenticateUserViaTouchId];
+                            }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancel];
+    [alert addAction:retry];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(void)showAlertWithMessage:(RandomUserError *)error  {

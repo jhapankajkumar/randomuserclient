@@ -1,0 +1,53 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/sgmshd04/Library/Developer/Xcode/DerivedData/RandomUser-gskgbttldnuiazfpstyyanfyyjeu/Build/Products/Debug-iphonesimulator/RandomUser.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "RandomUser-Swift.h",
+          'external-contents': "/Users/sgmshd04/Library/Developer/Xcode/DerivedData/RandomUser-gskgbttldnuiazfpstyyanfyyjeu/Build/Products/Debug-iphonesimulator/RandomUser.framework/Headers/RandomUser-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "RandomUser.h",
+          'external-contents': "/Users/sgmshd04/Documents/Personal/Swift/randomuserclient/RandomUser/RandomUser/RandomUser.h"
+        },
+        {
+          'type': 'file',
+          'name': "RandomUserError.h",
+          'external-contents': "/Users/sgmshd04/Documents/Personal/Swift/randomuserclient/RandomUser/RandomUser/RandomUserError.h"
+        },
+        {
+          'type': 'file',
+          'name': "RandomUserErrorCodes.h",
+          'external-contents': "/Users/sgmshd04/Documents/Personal/Swift/randomuserclient/RandomUser/RandomUser/RandomUserErrorCodes.h"
+        },
+        {
+          'type': 'file',
+          'name': "UserData.h",
+          'external-contents': "/Users/sgmshd04/Documents/Personal/Swift/randomuserclient/RandomUser/RandomUser/UserData.h"
+        },
+        {
+          'type': 'file',
+          'name': "UserDataManager.h",
+          'external-contents': "/Users/sgmshd04/Documents/Personal/Swift/randomuserclient/RandomUser/RandomUser/UserDataManager.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/sgmshd04/Library/Developer/Xcode/DerivedData/RandomUser-gskgbttldnuiazfpstyyanfyyjeu/Build/Products/Debug-iphonesimulator/RandomUser.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/sgmshd04/Documents/Personal/Swift/randomuserclient/RandomUser/build/RandomUser.build/Debug-iphonesimulator/RandomUser.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

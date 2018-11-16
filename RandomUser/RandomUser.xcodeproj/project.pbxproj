@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		EBAAF2AA219E981A002EFF7B /* framework-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = EBAAF2AB219E981A002EFF7B /* Build configuration list for PBXAggregateTarget "framework-Universal" */;
+			buildPhases = (
+				EBAAF2AE219E9842002EFF7B /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "framework-Universal";
+			productName = "framework-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		565DD922219C81670024B7A4 /* UserDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 565DD920219C81670024B7A4 /* UserDataBase.xcdatamodeld */; };
 		EB0518B1219C107F00F6B398 /* UserData.h in Headers */ = {isa = PBXBuildFile; fileRef = EB0518AF219C107F00F6B398 /* UserData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,7 +41,6 @@
 		EBAAF29E219D67FA002EFF7B /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF291219D67FA002EFF7B /* RNCryptorEngine.m */; };
 		EBAAF2A5219E76F3002EFF7B /* RandomUserError.h in Headers */ = {isa = PBXBuildFile; fileRef = EBAAF2A3219E76F3002EFF7B /* RandomUserError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EBAAF2A6219E76F3002EFF7B /* RandomUserError.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF2A4219E76F3002EFF7B /* RandomUserError.m */; };
-		EBAAF2A7219E76F3002EFF7B /* RandomUserError.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF2A4219E76F3002EFF7B /* RandomUserError.m */; };
 		EBAAF2A9219E7CE3002EFF7B /* RandomUserErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = EBAAF2A2219E7227002EFF7B /* RandomUserErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -227,6 +240,9 @@
 					EB464B3F219BD33100CC6F33 = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
+					EBAAF2AA219E981A002EFF7B = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
 				};
 			};
 			buildConfigurationList = EB464B31219BD33000CC6F33 /* Build configuration list for PBXProject "RandomUser" */;
@@ -243,6 +259,7 @@
 			targets = (
 				EB464B36219BD33000CC6F33 /* RandomUser */,
 				EB464B3F219BD33100CC6F33 /* RandomUserTests */,
+				EBAAF2AA219E981A002EFF7B /* framework-Universal */,
 			);
 		};
 /* End PBXProject section */
@@ -264,6 +281,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		EBAAF2AE219E9842002EFF7B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\"\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\nfi\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"${PROJECT_DIR}\"\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EB464B32219BD33000CC6F33 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -284,7 +317,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBAAF2A7219E76F3002EFF7B /* RandomUserError.m in Sources */,
 				EB464B46219BD33100CC6F33 /* RandomUserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +503,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEPLOYMENT_POSTPROCESSING = NO;
 				INFOPLIST_FILE = RandomUserTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -487,6 +520,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEPLOYMENT_POSTPROCESSING = NO;
 				INFOPLIST_FILE = RandomUserTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -496,6 +530,22 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com..RandomUserTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EBAAF2AC219E981A002EFF7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EBAAF2AD219E981A002EFF7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -525,6 +575,15 @@
 			buildConfigurations = (
 				EB464B4F219BD33100CC6F33 /* Debug */,
 				EB464B50219BD33100CC6F33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBAAF2AB219E981A002EFF7B /* Build configuration list for PBXAggregateTarget "framework-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBAAF2AC219E981A002EFF7B /* Debug */,
+				EBAAF2AD219E981A002EFF7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

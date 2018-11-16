@@ -72,6 +72,7 @@
                 [self showAlertWithMessage:error.errorMessage];
             }
             else{
+                [self.delegate notifyChangeEvent];
                 [self.navigationController popViewControllerAnimated:true];
             }
         }];
@@ -83,6 +84,9 @@
             if (!isSuccess) {
                 self.storeButton.enabled = true;
                 [self showAlertWithMessage:error.errorMessage];
+            }
+            else {
+                [self.storeButton setTitle:@"Stored" forState:UIControlStateNormal];
             }
             
         }];

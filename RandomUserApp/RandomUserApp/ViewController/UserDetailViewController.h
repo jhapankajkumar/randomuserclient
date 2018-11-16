@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <RandomUser/RandomUser.h>
 
+@protocol UserActionDelegate
+
+-(void)notifyChangeEvent;
+
+@end
+
 @interface UserDetailViewController : UIViewController
 
 -(void)setUserDetail:(UserData*)userData;
 @property (nonatomic) BOOL isStoredUserDetail;
+@property (nonatomic,weak) id <UserActionDelegate> delegate;
+
 @end
