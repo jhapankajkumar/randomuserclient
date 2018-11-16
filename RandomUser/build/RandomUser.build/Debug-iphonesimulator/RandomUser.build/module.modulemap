@@ -1,6 +1,0 @@
-framework module RandomUser {
-  umbrella header "RandomUser.h"
-
-  export *
-  module * { export * }
-}

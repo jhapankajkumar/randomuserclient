@@ -10,10 +10,8 @@
 #import "RandomUserErrorCodes.h"
 
 @interface RandomUserError : NSObject
-/**
- * Provides the SDK Error code occurred.
- *
- */
+
+
 @property (nonatomic) RUErrorCode errorCode;
 
 /**
