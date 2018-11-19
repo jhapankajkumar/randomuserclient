@@ -70,9 +70,11 @@ withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))
   withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock;
 
 /**
- * Retrieve the user to cache
+ * Retrieve the user from cache
+ * @param pageNo pageNo of the records
+ * @param pageSize total no of records per page
  * @param completionBlock call back user list.
  */
-- (void)getUserListFromCacheWithCompletionBlock:(void(^)(NSArray<UserData*> * _Nullable list, RandomUserError * _Nullable error))completionBlock;
+- (void)getUserListFromCacheWithPageNo:(NSUInteger)pageNo pageSize:(NSUInteger)pageSize  withCompletionBlock:(void(^)(NSArray<UserData*> * _Nullable list, RandomUserError * _Nullable error))completionBlock;
 
 @end

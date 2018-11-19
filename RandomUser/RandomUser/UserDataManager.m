@@ -124,11 +124,11 @@
 
 }
 
-- (void)getUserListFromCacheWithCompletionBlock:(void(^)(NSArray<UserData*> * _Nullable list, RandomUserError * _Nullable error))completionBlock {
+- (void)getUserListFromCacheWithPageNo:(NSUInteger)pageNo pageSize:(NSUInteger)pageSize  withCompletionBlock:(void(^)(NSArray<UserData*> * _Nullable list, RandomUserError * _Nullable error))completionBlock {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         @try {
-            NSArray *users = [self getUsersFromCache];
+            NSArray *users = [self getUsersFromCacheForPage:pageNo forPageSize:pageSize];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (users.count ==0) {
                     RandomUserError *rmError = [[RandomUserError alloc] init];
@@ -288,10 +288,12 @@ withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))
     return fullName;
 }
 
--(NSArray<UserData*>*)getUsersFromCache {
+-(NSArray<UserData*>*)getUsersFromCacheForPage:(NSUInteger)pageNo forPageSize:(NSUInteger)pageSize {
     
     NSManagedObjectContext *context = self.persistentContainer.viewContext;
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"User"];
+    request.fetchLimit = pageSize;
+    request.fetchOffset = pageSize * (pageNo - 1 );
     NSError *error = nil;
     NSArray *results = [context executeFetchRequest:request error:&error];
     NSMutableArray *userListArray = [[NSMutableArray alloc]init];
@@ -417,21 +419,26 @@ withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))
     
     NSManagedObjectContext *context = self.persistentContainer.viewContext;
     for (UserData *userData in userDataList) {
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@",userData.name];
-        [fetchRequest setEntity:entity];
-        [fetchRequest setPredicate:predicate];
-        
-        NSError *error;
-        NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
-        
-        for (NSManagedObject *managedObject in items)
-        {
-            [context deleteObject:managedObject];
+        @try {
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@",userData.name];
+            [fetchRequest setEntity:entity];
+            [fetchRequest setPredicate:predicate];
+            
+            NSError *error;
+            NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+            
+            for (NSManagedObject *managedObject in items)
+            {
+                [context deleteObject:managedObject];
+            }
+            
+            [self saveContext];
+            
+        } @catch (NSException *exception) {
+            NSLog(@"deleteUserList: Found Expeption: %@ ",exception.description);
         }
-        
-        [self saveContext];
     }
     NSLog(@"Delete UserData");
     return [self saveContext];
@@ -446,7 +453,6 @@ withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))
                                                error:&error];
     
     NSString *encryptedString = [self hexadecimalStringFromData:encryptedData];
-    NSLog(@"Encrypted Data lenght %lu", (unsigned long)encryptedData.length);
     return encryptedString;
     
 }
@@ -535,6 +541,7 @@ withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))
 -(BOOL)saveContext {
     NSManagedObjectContext *context = self.persistentContainer.viewContext;
     NSError *error = nil;
+    NSLog(@"CONTEXT %@",context);
     if ([context hasChanges] && ![context save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, error.userInfo);
         return false;

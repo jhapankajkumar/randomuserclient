@@ -10,7 +10,7 @@
 #define RandomUserErrorCodes_h
 
 /*!
- RUErrorCode enum
+ RandomUserErrorCode enum
  @abstract Describes error code of Random User
  */
 typedef NS_ENUM(NSInteger,RUErrorCode) {

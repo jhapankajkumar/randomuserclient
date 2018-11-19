@@ -12,7 +12,7 @@
 @interface ViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 
-@property (nonatomic,strong) NSArray *userList;
+@property (nonatomic,strong) NSMutableArray *userList;
 @property (nonatomic) BOOL isStoredUserList;
 @end
 

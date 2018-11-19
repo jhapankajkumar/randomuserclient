@@ -72,7 +72,7 @@
                 [self showAlertWithMessage:error.errorMessage];
             }
             else{
-                [self.delegate notifyChangeEvent];
+                [self.delegate notifyDeleteEvenForUserData:self.user];
                 [self.navigationController popViewControllerAnimated:true];
             }
         }];

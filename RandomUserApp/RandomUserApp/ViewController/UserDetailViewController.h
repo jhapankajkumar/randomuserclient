@@ -11,7 +11,7 @@
 
 @protocol UserActionDelegate
 
--(void)notifyChangeEvent;
+-(void)notifyDeleteEvenForUserData:(UserData *)data;
 
 @end
 

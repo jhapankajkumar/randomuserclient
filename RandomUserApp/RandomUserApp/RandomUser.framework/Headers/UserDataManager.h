@@ -14,15 +14,14 @@
 
 @interface UserDataManager : NSObject
 
-/*!
+/**
  * Get the single instance of the class
  * @return Singleton instance of the class
  */
 +(instancetype)sharedInstance;
 
-/*!
+/**
  * Get the user list from the server.
- * @note: Payment with other than default card is not allowed. In case you want to make payment with different card, please make that card as default card and then make payment.
  *
  * @param seed a User id for the group of user.
  * @param gender Gender of the user
@@ -35,7 +34,7 @@
        withCompletionBlock:(void(^)(NSArray <UserData * > * _Nullable users , RandomUserError * _Nullable error ))completionBlock;
 
 
-/*!
+/**
  * Store the user to cache
  * @param userData User data to be store in cache
  * @param completionBlock call back  with success/failure or error.
@@ -44,7 +43,7 @@
 withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock;
 
 
-/*!
+/**
  * Store the multiple user to cache
  * @param userData User data to be store in cache
  * @param completionBlock call back  with success/failure or error.
@@ -53,7 +52,7 @@ withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error )
 withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock;
 
 
-/*!
+/**
  * Delete the user from cache
  * @param userData User data to be deleted from cache
  * @param completionBlock call back  with success/failure or error.
@@ -62,7 +61,7 @@ withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error )
 withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))completionBlock;
 
 
-/*!
+/**
  * Delete the multiple user to cache
  * @param userDataList  list of User data to be deleted from cache
  * @param completionBlock call back  with success/failure or error.
@@ -70,10 +69,12 @@ withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error))
 - (void)deleteUserList:(NSArray<UserData *> *_Nonnull)userDataList
   withCompletionBlock:(void(^)(BOOL isSuccess, RandomUserError * _Nullable error ))completionBlock;
 
-/*!
+/**
  * Retrieve the user to cache
+ * @param pageNo pageNo of the records
+ * @param pageSize total no of records per page
  * @param completionBlock call back user list.
  */
-- (void)getUserListFromCacheWithCompletionBlock:(void(^)(NSArray<UserData*> * _Nullable list, RandomUserError * _Nullable error))completionBlock;
+- (void)getUserListFromCacheWithPageNo:(NSUInteger)pageNo pageSize:(NSUInteger)pageSize  withCompletionBlock:(void(^)(NSArray<UserData*> * _Nullable list, RandomUserError * _Nullable error))completionBlock;
 
 @end

@@ -16,6 +16,8 @@
     UIButton *storeDeleteAllButton;
     UIView *loadingView;
     UIActivityIndicatorView *loadingIndicatore;
+    NSInteger pageNo;
+    NSInteger pageSize;
 }
 
 @end
@@ -77,6 +79,8 @@
 
 -(void)initialSetup {
     self.listTableView.estimatedRowHeight =  100;
+    pageNo = 1;
+    pageSize = 20;
     self.listTableView.rowHeight = UITableViewAutomaticDimension;
     [self setupLoader];
     [self setupBarButtonItem];
@@ -96,7 +100,7 @@
 
 - (void)getStoredUserList {
     [self showLoader];
-    [[UserDataManager sharedInstance] getUserListFromCacheWithCompletionBlock:^(NSArray<UserData *> * _Nullable list, RandomUserError * _Nullable error) {
+    [[UserDataManager sharedInstance] getUserListFromCacheWithPageNo:pageNo pageSize:pageSize withCompletionBlock:^(NSArray<UserData *> * _Nullable list, RandomUserError * _Nullable error)  {
         [self hideLoader];
         self.userList = list;
         [self.listTableView reloadData];
@@ -126,6 +130,20 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //Need to expose one more api which gets the total no of records present in data base
+    if (indexPath.row == (pageNo * pageSize) - 5 ) {
+        pageNo ++;
+        NSLog(@"Page No  = %ld",(long)pageNo);
+        [[UserDataManager sharedInstance] getUserListFromCacheWithPageNo:pageNo pageSize:pageSize withCompletionBlock:^(NSArray<UserData *> * _Nullable list, RandomUserError * _Nullable error)  {
+            NSLog(@"Records  = %lu",list.count);
+            if (error == nil) {
+                [self.userList addObjectsFromArray:list];
+                [self.listTableView reloadData];
+            }
+        }];
+    }
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      if ([segue.identifier isEqualToString:@"fromListToUserDetail"]){
@@ -144,6 +162,8 @@
     storeDeleteAllButton.enabled = false;
     if (self.userList.count > 0) {
         [self showLoader];
+        
+        //Delete all
         if (self.isStoredUserList) {
             [[UserDataManager sharedInstance] deleteUserList:self.userList withCompletionBlock:^(BOOL isSuccess, RandomUserError * _Nullable error) {
                 [self hideLoader];
@@ -152,10 +172,36 @@
                     [self showAlertWithMessage:error];
                 }
                 else{
-                    [self.navigationController popViewControllerAnimated:true];
+                    
+                    pageNo = 1;
+                    NSLog(@"Page No  = %ld",(long)self->pageNo);
+                    //Load the new set of records if exists
+                    [[UserDataManager sharedInstance] getUserListFromCacheWithPageNo:self->pageNo pageSize:self->pageSize withCompletionBlock:^(NSArray<UserData *> * _Nullable list, RandomUserError * _Nullable error)  {
+                        NSLog(@"Records  = %lu",list.count);
+                        if (error == nil) {
+                            if (list.count > 0) {
+                                self->storeDeleteAllButton.enabled = true;
+                                //remove deleted records
+                                [self.userList removeAllObjects];
+                                
+                                //add new records
+                                [self.userList addObjectsFromArray:list];
+                                
+                                //reload table
+                                [self.listTableView reloadData];
+                            }
+                            //if no records found return to previous screen
+                            else {
+                                [self.navigationController popViewControllerAnimated:true];
+                            }
+                            
+                        }
+                    }];
+                    
                 }
             }];
         }
+        //Store all
         else{
             [[UserDataManager sharedInstance]cacheUserList:self.userList withCompletionBlock:^(BOOL isSuccess, RandomUserError * _Nullable error) {
                 [self hideLoader];
@@ -178,10 +224,9 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
--(void)notifyChangeEvent {
-    if (self.isStoredUserList) {
-        [self getStoredUserList];
-    }
+-(void)notifyDeleteEvenForUserData:(UserData *)data{
+    [self.userList removeObject:data];
+    [self.listTableView reloadData];
 }
 
 @end

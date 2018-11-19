@@ -140,11 +140,11 @@
 				EB0518AF219C107F00F6B398 /* UserData.h */,
 				EB0518B0219C107F00F6B398 /* UserData.m */,
 				EBAAF2A2219E7227002EFF7B /* RandomUserErrorCodes.h */,
-				565DD920219C81670024B7A4 /* UserDataBase.xcdatamodeld */,
-				EB464B3B219BD33100CC6F33 /* Info.plist */,
 				EBAAF2A3219E76F3002EFF7B /* RandomUserError.h */,
 				EBAAF2A4219E76F3002EFF7B /* RandomUserError.m */,
 				EBAAF2A8219E7A4C002EFF7B /* RandomUserErroMessages.h */,
+				EB464B3B219BD33100CC6F33 /* Info.plist */,
+				565DD920219C81670024B7A4 /* UserDataBase.xcdatamodeld */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
